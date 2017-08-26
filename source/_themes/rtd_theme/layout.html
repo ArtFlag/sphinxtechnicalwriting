@@ -106,7 +106,7 @@
 
           {% if theme_display_version %}
             {%- set nav_version = version %}
-            {% if NEWSTORE and current_version %}
+            {% if theme and current_version %}
               {%- set nav_version = current_version %}
             {% endif %}
             {% if nav_version %}
@@ -193,7 +193,7 @@
   {% endif %}
 
   {# RTD hosts this file, so just load on non RTD builds #}
-  {% if not NEWSTORE %}
+  {% if not theme %}
     <script type="text/javascript" src="{{ pathto('_static/js/theme.js', 1) }}"></script>
   {% endif %}
 
