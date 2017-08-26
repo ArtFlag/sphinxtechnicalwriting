@@ -79,7 +79,69 @@ To set it up:
 
 #. Click the toggle next to your documentation repository to tell Travis to monitor it.
 #. Click the gear icon to open the settings.
-#.
+#. Select:
 
-#. Click :guilabel:`Settings` > :guilabel:`Integration & services`.
-#. Click :guilabel:`Add service` and type ``Travis CI``.
+   - Build only if .travis.yml is present
+   - Build branch updates
+   - Build pull request updates
+
+#. Got to GitHub and click :guilabel:`Settings` > :guilabel:`Integration & services`.
+
+You should see Travis CI in the list of services already added.
+
+We configured Travis CI to look for a file named ``.travis.yml``. Let's create it.
+
+
+Creating the ``.travis.yml`` file
+---------------------------------
+
+This file tells Travis CI what to do.
+
+In our case, we need to tell it to build the docs and upload the result on Amazon S3:
+
+.. code-block:: yaml
+
+   language: python
+   branches:
+     only:
+     - master
+   python:
+     - '2.7'
+   sudo: false
+   install:
+     - pip install -r requirements.txt
+   script:
+     - make html linkcheck
+   after_success:
+   - python ./upload-docs.py
+
+This file has to follow Travis CI specificions, but it's already quite clear:
+
+#. Use Python 2.7 as main language, and run only on the Master branch.
+#. Install the python modules contained the requirements.txt file of the repo.
+
+   This file contains names of Python modules and makes life easy for any contributor:
+
+   .. code-block:: yaml
+
+      #sphinx, the platform
+      sphinx
+
+      #sphinx extension
+      sphinxcontrib-fulltoc
+
+      #module to upload files to Amazon S3
+      boto3
+
+#. Once the environment is ready, run the following command: ``make html linkcheck``.
+
+   The commands builds the HTML output from Sphinx and runs the link checker.
+
+#. If this script succeed, run the following command: ``python ./upload-docs.py``.
+
+   This Python file contains a script to upload the output to Amazon S3. More on this later.
+
+That's it for a first version! Every time Master gets a new commit, Travis builds the docs and if
+the build is successful, it publishes the output on S3.
+
+
