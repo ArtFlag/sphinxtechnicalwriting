@@ -1,3 +1,5 @@
+.. _features:
+
 Sphinx features for technical writing
 =====================================
 
@@ -82,4 +84,17 @@ And link to it:
 .. note:: You can only create such a link using the ``ref`` role, which is recommended in the vast majority of cases.
 
 
+Boosting your productivity with the right editor
+------------------------------------------------
 
+For me, the best editing tool for rST editing is `Visual Studio Code <https://code.visualstudio.com/>`__.
+
+It's a great piece of software out-of-the-box, but it really shines with the following extensions:
+
+- `reStructuredText <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`__
+- `Python <https://marketplace.visualstudio.com/items?itemName=donjayamanne.python>`__
+- `Table formatter <https://marketplace.visualstudio.com/items?itemName=shuworks.vscode-table-formatter>`__
+- `Git History <https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory>`__
+- `Code Spell Checker <https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker>`__
+
+You can probably look at `Atom <https://atom.io/>`_ as well for equivalent features.
