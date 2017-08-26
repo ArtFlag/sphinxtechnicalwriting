@@ -1,2 +1,6 @@
-# moderntechwriting
-A simple blog about modern technicali writing tools like Sphinx
+# sphinxtechnicalwriting
+
+A simple website about modern technical writing using Sphinx.
+
+Work in progress.
+
