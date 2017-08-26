@@ -2,7 +2,7 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =c
+SPHINXOPTS    = --color
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = moderntechwriting
 SOURCEDIR     = source
