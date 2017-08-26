@@ -10,10 +10,17 @@ in sync with the software.
 
 Sphinx, like other static website generators, is really easy to use for continuous deployment.
 
+Prerequisites
+-------------
+
 In this tutorial we assume that you have some prerequisite knowledge about:
 
 - GitHub (how to use it on a basic level, what is a branch, what is a pull request)
 - Sphinx (how to install it, how to build the output, what are extensions)
+
+
+Final setup
+-----------
 
 The result of the tutorial is the following setup:
 
@@ -100,7 +107,7 @@ Creating the ``.travis.yml`` file
 
 This file tells Travis CI what to do.
 
-In our case, we need to tell it to build the docs and upload the result on Amazon S3:
+In our case, we need to tell it to build the docs and upload the output to Amazon S3:
 
 .. code-block:: yaml
 
@@ -121,30 +128,33 @@ In our case, we need to tell it to build the docs and upload the result on Amazo
 This file has to follow Travis CI specifications, but it's already quite clear:
 
 #. Use Python 2.7 as main language, and run only on the Master branch.
-#. Install the python modules contained the requirements.txt file of the repo.
+#. Install the python modules contained the ``requirements.txt`` file of the repo.
 
-   This file contains names of Python modules and makes life easy for any contributor:
+   This file contains names of the Python modules we need (dependencies):
 
    .. code-block:: yaml
 
-      #sphinx, the platform
+      #Sphinx
       sphinx
 
-      #sphinx extension
+      #Sphinx extensions
       sphinxcontrib-fulltoc
 
-      #module to upload files to Amazon S3
+      #Module to upload files to Amazon S3
       boto3
 
 #. Once the environment is ready, run the following command: ``make html linkcheck``.
 
    The commands builds the HTML output from Sphinx and runs the link checker.
 
-#. If this script succeed, run the following command: ``python ./upload-docs.py``.
+#. If the previous script succeeded, run the following command: ``python ./upload-docs.py``.
 
    This Python file contains a script to upload the output to Amazon S3. More on this later.
 
 That's it for a first version! Every time Master gets a new commit, Travis builds the docs and if
 the build is successful, it publishes the output on S3.
+
+Before we make it test our documentation more extensively, let's talk about testing.
+
 
 

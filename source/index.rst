@@ -2,12 +2,12 @@ Using Sphinx for technical writing
 ==================================
 
 
-This website is mostly a tutorial on how to setup Sphinx for continuous deployment with totally free software.
+This website is mostly a tutorial on how to set up Sphinx for continuous deployment with totally free software.
 
 The setup presented here is great to solve the following problems:
 
 - You are the only tech writer of your company and cannot keep up with the software production (1 TW for 6+ dev teams)
-- You must wear the PM hat, the tech writer hat, and the QA hat: let's automate the QA part.
+- You must wear the PM hat, the tech writer hat, and the QA hat, and want to automate the QA part.
 - You want to enable developers to contribute to the docs.
 - You still want to have full control over the docs to steer it in the right direction.
 - You want to be able to write the docs too, or fix other contributors' documentation.
@@ -16,7 +16,7 @@ The setup presented here is great to solve the following problems:
 The solution uses GitHub, Travis CI and Sphinx but if you are using different tools, like Bitbucket and Jekyll,
 or a local setup of Git and Hugo, the examples should still be meaningful.
 
-Before I created this set up, I looked for information and it turned out that it is difficult to find information about Sphinx
+Before I created this setup, I looked for information and it turned out that it is difficult to find information about Sphinx
 that comes from technical writers.
 
 In order to fill this gap, I decided to create this website to share some tips and tricks that, hopefully,
@@ -34,9 +34,8 @@ A recap on modern technical writing
 
 **What's a static website generator?**
 
-It's a piece of software, generally free, that turns text files into a simple website (static, as in "no script").
-It's up to you to hack it to modify the theme of the website, or the features of the generator.
-Other people have already done it, so you can just use what they created (or improve it).
+It's a piece of software, generally free, that turns text files into a simple website.
+Generators are generally open source, so you can modify anything, or use other people's modifications (extensions).
 Most importantly, it's great because it's fast and simple. And you know... less is more.
 
 **Why would you do that, some software is designed to write docs like MadCap Flare, oXygen, etc?**
