@@ -74,6 +74,6 @@ Maybe these tools are not be applicable in your context.
    :maxdepth: 2
 
    features.rst
-   basicsetup.rst
+   continuousdeployment.rst
 
 

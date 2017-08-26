@@ -8,7 +8,7 @@ Continuous deployment is a way to deploy content (or software) automatically und
 In technical writing, continuous deployment is one of the aspects of a general workflow to make sure the documentation is always
 in sync with the software.
 
-Sphinx, like other static website generators are really easy to use for continuous deployment.
+Sphinx, like other static website generators, is really easy to use for continuous deployment.
 
 In this tutorial we assume that you have some prerequisite knowledge about:
 
@@ -19,7 +19,9 @@ The result of the tutorial is the following setup:
 
 #. A central Git repository contains the published documentation sources.
 #. Every time a pull request is sent to Master:
-   #. Build the documentation using the source files of the branch
+
+   #. Build the documentation using the source files of the branch.
+
    #. Run tests on the documentation:
 
       #. Check the links
@@ -29,6 +31,7 @@ The result of the tutorial is the following setup:
    #. If every test passes, allow merging the pull request to Master.
 
 #. On every merge to Master:
+
    #. Build the docs with the latest merged sources.
    #. Run the tests (same tests as on the pull request).
    #. If the tests are passing, publish the sources to Amazon S3.
@@ -115,7 +118,7 @@ In our case, we need to tell it to build the docs and upload the result on Amazo
    after_success:
    - python ./upload-docs.py
 
-This file has to follow Travis CI specificions, but it's already quite clear:
+This file has to follow Travis CI specifications, but it's already quite clear:
 
 #. Use Python 2.7 as main language, and run only on the Master branch.
 #. Install the python modules contained the requirements.txt file of the repo.

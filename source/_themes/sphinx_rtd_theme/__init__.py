@@ -1,11 +1,11 @@
-""".
+"""Sphinx ReadTheDocs theme.
 
-From https://github.com/rtfd/sphinx_rtd_theme.
+From https://github.com/ryan-roemer/sphinx-bootstrap-theme.
 
 """
 import os
 
-__version__ = '0.1'
+__version__ = '0.2.5b1'
 __version_full__ = __version__
 
 
