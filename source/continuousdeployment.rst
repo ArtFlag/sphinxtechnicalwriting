@@ -41,18 +41,18 @@ The result of the tutorial is the following setup:
 
    #. Build the docs with the latest merged sources.
    #. Run the tests (same tests as on the pull request).
-   #. If the tests are passing, publish the sources to Amazon S3.
+   #. If the tests are passing, publish the output to GitHub Pages.
 
-This kind of setup saves a lot of time to any technical writer and it fairly simple to create.
+This kind of setup saves a lot of time to any technical writer and it's fairly simple to create.
 
-The other advantage is that it allows contributions from any member of your company, as long as they have access to Git and a basic
+The other advantage is that it allows contributions from any member of your company, as long as they have access to GitHub and a basic
 understanding of it.
 
 Let's get started.
 
 
-Setting up the repository
--------------------------
+Configuring the repository
+--------------------------
 
 Before you begin, make sue you are the admin of the documentation repo.
 
@@ -69,12 +69,52 @@ For the setup to be efficient at protecting the master branch, protect the maste
 
 #. Click :guilabel:`Save changes`.
 
-If you are the admin of your repo, you're now the only captain on board, which is good in this case, because nobody will be able
+If you are the admin of your repo, you're now the only captain on board, which is good in this case because nobody will be able
 to mess up the published documentation (Master branch) without you knowing about this.
 
 
-Setting up Travis CI
---------------------
+Creating a development environment
+----------------------------------
+
+Your repository host the content and depends on the software installed on the contributor to build the output (for example Sphinx).
+
+These tools are not hosted but installed locally on the contributor's computer. If
+a contributor doesn't have Python installed, building the docs is a no-go. Same thing if the
+contributor doesn't have Sphinx, or a specific extension... This requiered setup to build the docs
+is called a **development environment**.
+
+Contributors must replicate this development environment to work on the docs. To make the creation of this
+development environment smooth, you must remove yourself from the equation so that you don't have to run around your
+workplace installing Sphinx on every single contributor's computer.
+
+Automating the configuration of the development environment is done with a ``requirements.txt`` file.
+This file contains the list of all the Python modules required to build the docs.
+
+#. Create a ``requirements.txt`` file at the root of your repository.
+#. Go through your Sphinx ``conf.py`` file and add the name of each extension to the requirements.txt file.
+   One extension name per line.
+
+   .. admonition:: Example
+
+      The ``requirements.txt`` file of the project used to build the docs you are reading now contains:
+
+      .. code-block:: bash
+
+         sphinx
+         sphinxcontrib-mermaid
+
+#. Push this file to your master branch.
+
+This file is ready to be used by ``pip`` to install every Python module needed by your docs platform.
+
+To use it, contributors who already have Python installed, would type: ``pip install -r requirements.txt``.
+
+Why do we care about our contributors so early in the project? Because Travis CI could be seen as one, or at least
+as an actor of our docs platform.
+
+
+Linking GitHub and Travis
+-------------------------
 
 Travis CI is a service that can be integrated with GitHub and that can run scripts whenever specific GitHub events happen,
 such as a push, a pull request, etc.
@@ -91,70 +131,91 @@ To set it up:
 #. Click the gear icon to open the settings.
 #. Select:
 
-   - Build only if .travis.yml is present
-   - Build branch updates
-   - Build pull request updates
+   - :guilabel:`Build only if .travis.yml is present`
+   - :guilabel:`Build branch updates`
+   - :guilabel:`Build pull request updates`
 
-#. Got to GitHub and click :guilabel:`Settings` > :guilabel:`Integration & services`.
+#. Go to GitHub and click :guilabel:`Settings` > :guilabel:`Applications` > :guilabel:`Authorized OAuth Apps`.
 
-You should see Travis CI in the list of services already added.
+   You should see Travis CI in the list of services already added.
 
-We configured Travis CI to look for a file named ``.travis.yml``. Let's create it.
+#. `Create a token <https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/>`__ for Travis to be able to publish the docs on GitHub Pages.
+
+   .. important:: Make sure you have copied the token, as explained in the GitHub docs.
+
+   This token is basically the keys to the GitHub repo kingdom. You need to give it to Travis so that Travis can push the output files
+   to your repository. Like most access token, it's a generally a wise idea to encrypt it.
+
+#. `Encrypt the token <https://docs.travis-ci.com/user/environment-variables#Defining-encrypted-variables-in-.travis.yml>`__ that you created and copied in the previous step.
+#. Keep the encrypted token preciously.
+
+You have configured Travis and GitHub so that Travis can push changes to your repo.
+You can now tell Travis what to do with your repo.
 
 
-Creating the ``.travis.yml`` file
----------------------------------
+Setting up Travis to test and publish the documentation
+-------------------------------------------------------
 
-This file tells Travis CI what to do.
+Travis looks for a file called ``.travis.yml`` at the root of your repo in order to know
+what to do.
 
-In our case, we need to tell it to build the docs and upload the output to Amazon S3:
+.. admonition:: Objective recap
 
-.. code-block:: yaml
+   We need to tell Travis to:
 
-   language: python
-   branches:
-     only:
-     - master
-   python:
-     - '2.7'
-   sudo: false
-   install:
-     - pip install -r requirements.txt
-   script:
-     - make html linkcheck
-   after_success:
-   - python ./upload-docs.py
+   #. Install the an OS image and Python, as well as other languages you need, for example ``node.js``.
+   #. Install all the pieces requiered to build the docs such as Sphinx and the extensions. Spoiler alert: that's why we needed
+      the ``requirements.txt`` early on.
+   #. Build the docs.
+   #. Run some tests.
+   #. Publish the docs on GitHub pages.
 
-This file has to follow Travis CI specifications, but it's already quite clear:
+To automate the publishing of the documentation:
 
-#. Use Python 2.7 as main language, and run only on the Master branch.
-#. Install the python modules contained the ``requirements.txt`` file of the repo.
-
-   This file contains names of the Python modules we need (dependencies):
+#. Create ``.travis.yml`` at the root of your repository.
+#. Dump the following content into the file:
 
    .. code-block:: yaml
 
-      #Sphinx
-      sphinx
+      language: python
+      branches:
+        only:
+        - master
+      python:
+      - '2.7'
+      before_install:
+      - wget https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh -O ~/.nvm/nvm.sh
+      - source ~/.nvm/nvm.sh
+      - nvm install 5
+      - node --version
+      install:
+      - pip install -U pip
+      - pip install -r requirements.txt
+      script:
+      - make html
+      after_success:
+        #test the docs
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GH_TOKEN
+        local_dir: build/html
+        on:
+          branch: master
+      env:
+        global:
+          secure: <your encrypted key here>
 
-      #Sphinx extensions
-      sphinxcontrib-fulltoc
+#. Push your file to your **master** branch.
 
-      #Module to upload files to Amazon S3
-      boto3
+If everything goes well, Travis does the following every time there is a push to master:
 
-#. Once the environment is ready, run the following command: ``make html linkcheck``.
+#. Set up a system that runs Python 2.7.
+#. Install nvm to be able to run node.js packages. We're not using this now but you might use node.js packages for your tests, so Travis is ready to go.
+#. Install pip and install all the Python modules contained in ``requirements.txt`` (Sphinx & friends).
+#. Run ``make html`` to build the docs.
+#. If the build succeeds, publish the docs to GitHub Pages. If the build fails, you are notified by email and you can start fixing the problems.
 
-   The commands builds the HTML output from Sphinx and runs the link checker.
-
-#. If the previous script succeeded, run the following command: ``python ./upload-docs.py``.
-
-   This Python file contains a script to upload the output to Amazon S3. More on this later.
-
-That's it for a first version! Every time Master gets a new commit, Travis builds the docs and if
-the build is successful, it publishes the output on S3.
-
-Before we make it test our documentation more extensively, let's talk about testing.
 
 
 
