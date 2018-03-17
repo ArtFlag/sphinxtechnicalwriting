@@ -3,26 +3,18 @@ branches:
   only:
   - master
 python:
-- '2.7'
-before_install:
-- wget https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh -O ~/.nvm/nvm.sh
-- source ~/.nvm/nvm.sh
-- nvm install 5
-- node --version
+- '3.6'
+node_js: 6
 install:
 - pip install -U pip
 - pip install -r requirements.txt
 script:
 - make html
 after_success:
-  #call a script to deploy to S3 or whatever you want
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GH_TOKEN
+  github_token: "$token"
   local_dir: build/html
   on:
     branch: master
-env:
-  global:
-    secure: a3cxT+abtYVM2duX8nkoWgUrq9DGgL+rHCR4hua9zk6RL9MqMxEdUne57abeQoJyTMG9oi9xYbu8f4Emfdn3fhOlnmULidAMAp4Jccmp5fYhbNVjSIfUeTgo91ajCkj4lrFRk6sZuwSMlaZnyTYD5TKTd0GnYtC2gbDadG3qjKU0bRugAhALn5Szsmk/+e57hBcGi7b1CnNuqY+DKpRDuqD5+zsl0cCgRQJUXc7vrl6+2X7F/C7sY77VmOFuToQCPd8HNsnhg0wLrEtoILbSRYnUKb0gwueT9ZJee/X8qR/P6kli2ExmhdjIcAJz6qZVIMLoToMZHp72/Hmso7DL+5csp6J4uH/pjCtgenaxrAhO2Vah1dGUUNo+7dnHoQB4cYEvK4p+r8sKQmX3zUiqucTa+4u3bT+LO3DuQEvuYrreOlKnuh6oWf3ccArgfXJDkY0VrjRiZldGmMAjU85rsFixlFmK2SBfoKt9vRuosfuyUXs0ljoOfbxlbqpB3InntNbbV9btfdFHhVvriBytidP4NaBmFJdLnR9KjvVbc2KaOOSuVFGwBIXUXRHUr6DQnxeqbIVHN3ELL7jOkhZlZVCkcFkNiirkL8YGZuQfZ52TuRPGqGmFjq9t32mvdyxV+ZyqIIt6HA0w7IMv17wefgYRlE5SjECiiw3ZwhD14d4=

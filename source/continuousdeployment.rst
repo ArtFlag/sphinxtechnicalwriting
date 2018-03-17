@@ -3,12 +3,14 @@
 Continuous deployment
 ======================
 
-Continuous deployment is a way to deploy content (or software) automatically under certain conditions, such as "tests are passing".
+Continuous deployment is a way to deploy content (or software) automatically under certain conditions,
+such as *tests are passing*.
 
-In technical writing, continuous deployment is one of the aspects of a general workflow to make sure the documentation is always
-in sync with the software.
+In technical writing, continuous deployment can be used to help tech writers keep up with the product(s) to be
+documented by automating as many things as possible such as tests and deployment.
 
-Sphinx, like other static website generators, is really easy to use for continuous deployment.
+Sphinx, like other static website generators, is really easy to use and can be used along GitHub and Travis.
+
 
 Prerequisites
 -------------
@@ -76,11 +78,11 @@ to mess up the published documentation (Master branch) without you knowing about
 Creating a development environment
 ----------------------------------
 
-Your repository host the content and depends on the software installed on the contributor to build the output (for example Sphinx).
+Your repository hosts the content and depends on the software installed on the contributor to build the output (for example Sphinx).
 
 These tools are not hosted but installed locally on the contributor's computer. If
 a contributor doesn't have Python installed, building the docs is a no-go. Same thing if the
-contributor doesn't have Sphinx, or a specific extension... This requiered setup to build the docs
+contributor doesn't have Sphinx, or a specific extension... This required setup to build the docs
 is called a **development environment**.
 
 Contributors must replicate this development environment to work on the docs. To make the creation of this
@@ -139,32 +141,21 @@ To set it up:
 
    You should see Travis CI in the list of services already added.
 
-#. `Create a token <https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/>`__ for Travis to be able to publish the docs on GitHub Pages.
-
-   .. important:: Make sure you have copied the token, as explained in the GitHub docs.
-
-   This token is basically the keys to the GitHub repo kingdom. You need to give it to Travis so that Travis can push the output files
-   to your repository. Like most access token, it's a generally a wise idea to encrypt it.
-
-#. `Encrypt the token <https://docs.travis-ci.com/user/environment-variables#Defining-encrypted-variables-in-.travis.yml>`__ that you created and copied in the previous step.
-#. Keep the encrypted token preciously.
-
-You have configured Travis and GitHub so that Travis can push changes to your repo.
-You can now tell Travis what to do with your repo.
+Travis has access to the repositories you ticked. You can now tell Travis what to do with your repo.
 
 
 Setting up Travis to test and publish the documentation
 -------------------------------------------------------
 
 Travis looks for a file called ``.travis.yml`` at the root of your repo in order to know
-what to do.
+what to do with it.
 
 .. admonition:: Objective recap
 
    We need to tell Travis to:
 
    #. Install the an OS image and Python, as well as other languages you need, for example ``node.js``.
-   #. Install all the pieces requiered to build the docs such as Sphinx and the extensions. Spoiler alert: that's why we needed
+   #. Install all the pieces required to build the docs such as Sphinx and the extensions. Spoiler alert: that's why we needed
       the ``requirements.txt`` early on.
    #. Build the docs.
    #. Run some tests.
@@ -182,12 +173,8 @@ To automate the publishing of the documentation:
         only:
         - master
       python:
-      - '2.7'
-      before_install:
-      - wget https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh -O ~/.nvm/nvm.sh
-      - source ~/.nvm/nvm.sh
-      - nvm install 5
-      - node --version
+      - '3.6'
+      node_js: 6
       install:
       - pip install -U pip
       - pip install -r requirements.txt
@@ -198,24 +185,30 @@ To automate the publishing of the documentation:
       deploy:
         provider: pages
         skip_cleanup: true
-        github_token: $GH_TOKEN
+        github_token: $token #set in the Travis dashboard
         local_dir: build/html
         on:
           branch: master
-      env:
-        global:
-          secure: <your encrypted key here>
 
-#. Push your file to your **master** branch.
+   .. admonition:: Explanations
 
-If everything goes well, Travis does the following every time there is a push to master:
+      This file tells to Travis to apply the following steps:
 
-#. Set up a system that runs Python 2.7.
-#. Install nvm to be able to run node.js packages. We're not using this now but you might use node.js packages for your tests, so Travis is ready to go.
-#. Install pip and install all the Python modules contained in ``requirements.txt`` (Sphinx & friends).
-#. Run ``make html`` to build the docs.
-#. If the build succeeds, publish the docs to GitHub Pages. If the build fails, you are notified by email and you can start fixing the problems.
+      #. Set up a system that runs Python 3.6.
+      #. Install nvm to be able to run node.js packages. We're not using this now but you might use node.js packages for your tests, so Travis is ready to go.
+      #. Install pip and install all the Python modules contained in ``requirements.txt`` (Sphinx & friends).
+      #. Run ``make html`` to build the docs.
+      #. If the build succeeds, publish the docs to GitHub Pages. If the build fails, you are notified by email and you can start fixing the problems.
 
+   The file refers to a ``$token`` variable that has be defined.
 
+#. Log in to your GitHub account and go into :guilabel:`Settings` > :guilabel:`Developer settings` > :guilabel:`Personal access tokens`
 
+#. Click :guilabel:`Generate new token`, add a description, such as ``Travis token`` and tick the :guilabel:`repo`
+   checkbox then click :guilabel:`Generate token`.
 
+#. Copy the token.
+
+#. From the Travis settings page of your repository, add a new encrypted environment variable called ``token``.
+
+#. Commit and push your file to your **master** branch.
