@@ -3,11 +3,9 @@
 Continuous deployment
 ======================
 
-Continuous deployment is a way to deploy content (or software) automatically under certain conditions,
-such as *tests are passing*.
-
-In technical writing, continuous deployment can be used to help tech writers keep up with the product(s) to be
-documented by automating as many things as possible such as tests and deployment.
+Continuous deployment is a way to deploy (publish) software automatically and in short cycles.
+Typically, the process is build the software, test the software, deploy. If any of these steps fails, the process is
+interrupted.
 
 Sphinx, like other static website generators, is really easy to use and can be used along GitHub and Travis.
 

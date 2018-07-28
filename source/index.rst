@@ -1,40 +1,50 @@
 Using Sphinx for technical writing
 ==================================
 
+This website contains information and tutorials to set up `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ for
+continuous deployment (regular automated publishing of the docs) with totally free software.
 
-This website is mostly a tutorial on how to set up Sphinx for continuous deployment with totally free software.
+The fundamental idea behind this approach is to treat documentation like code. Developers and DevOps have been
+refining their workflows to deliver software. It only makes sense to me that technical writers should steal as much as
+possible from their findings.
 
-The setup presented here is great to solve the following problems:
+The idea of the workflow shown in this website is to solve the following problems.
 
-- You are the only tech writer of your company and cannot keep up with the software production (1 TW for 6+ dev teams)
-- You must wear the PM hat, the tech writer hat, and the QA hat, and want to automate the QA part.
+
+Problem list
+------------
+
+- You are the only tech writer of your company and you do not have time to maintain the documentation platform and
+  to write the docs.
 - You want to enable developers to contribute to the docs.
 - You still want to have full control over the docs to steer it in the right direction.
 - You want to be able to write the docs too, or fix other contributors' documentation.
 - You do not want to break the bank with licenses.
+- You do not want to be forced to a proprietary format (vendor lock-in).
 
-The solution uses GitHub, Travis CI and Sphinx but if you are using different tools, like Bitbucket and Jekyll,
-or a local setup of Git and Hugo, the examples should still be meaningful.
+Solution
+--------
 
-Before I created this setup, I looked for information and it turned out that it is difficult to find information about Sphinx
-that comes from technical writers.
+The solution uses `GitHub <https://github.com/>`__, `Travis CI <https://github.com/>`__
+and `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ but if you are using different tools, like Bitbucket and Jekyll,
+or a local install of Git and Hugo, this webside should still be meaningful.
 
-In order to fill this gap, I decided to create this website to share some tips and tricks that, hopefully,
-will be useful to some of you, fellow tech writers.
+Technical information related to technical writing is not easy to find on the internat so I hope this website can help some
+other technical writers.
 
-To see why I think Sphinx is one of the best generators (in my context), refer to :ref:`features`.
+To see why I think Sphinx is one of the best generators (in my context), see :ref:`features`.
 
-To see how to set it up for continuous deployment, refer to :ref:`deployment`.
+To see how to set it up for continuous deployment, see :ref:`deployment`.
 
-Finally, if you are really new to modern technical writing based on lightweight markup languages and
+Finally, if you are really new to "modern" technical writing based on lightweight markup languages and
 static website generators, here is a quick recap.
 
-A recap on modern technical writing
------------------------------------
+Modern technical writing
+------------------------
 
 **What's a static website generator?**
 
-It's a piece of software, generally free, that turns text files into a simple website.
+It's a piece of software, generally free, that turns specific text files into a simple website.
 Generators are generally open source, so you can modify anything, or use other people's modifications (extensions).
 Most importantly, it's great because it's fast and simple. And you know... less is more.
 
