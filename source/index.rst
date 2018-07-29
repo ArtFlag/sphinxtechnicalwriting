@@ -22,12 +22,13 @@ Problem list
 - You do not want to break the bank with licenses.
 - You do not want to be forced to a proprietary format (vendor lock-in).
 
+
 Solution
 --------
 
-The solution uses `GitHub <https://github.com/>`__, `Travis CI <https://github.com/>`__
-and `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ but if you are using different tools, like Bitbucket and Jekyll,
-or a local install of Git and Hugo, this webside should still be meaningful.
+The solution uses `GitHub <https://github.com/>`__, `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ and
+`Travis CI <https://github.com/>`__ but if you are using different tools, like Bitbucket, Jekyll and CircleCI, or a local
+install of Git, Hugo and another deployment platform, this webside should still be meaningful.
 
 Technical information related to technical writing is not easy to find on the internat so I hope this website can help some
 other technical writers.
@@ -38,6 +39,7 @@ To see how to set it up for continuous deployment, see :ref:`deployment`.
 
 Finally, if you are really new to "modern" technical writing based on lightweight markup languages and
 static website generators, here is a quick recap.
+
 
 Modern technical writing
 ------------------------
@@ -50,12 +52,15 @@ Most importantly, it's great because it's fast and simple. And you know... less 
 
 **Why would you do that, some software is designed to write docs like MadCap Flare, oXygen, etc?**
 
-This kind of software works, but you depend on a heavy architecture that is generally slower, and harder to customize.
-They can even use a proprietary format, so migrating to another system becomes really hard
+This kind of software works but you depend on a heavy architecture that is generally slower, and harder to customize,
+if possible at all.
+They can even use a proprietary format, so migrating to another system becomes really hard.
 
-Another issue is **licenses**. From the start, these applications mean that only the chosen few can edit the docs.
+Another issue is **licenses**. By design, these applications mean that only the chosen few colleagues can edit the docs,
+typically technical writers.
 If you work in software, the people with the knowledge are the developers since they write the code. Why would you want
-to lock them out of the docs *by tooling*? If it is what you want, it should strictly be a workflow decision.
+to lock them out of the docs *by your choice of tooling*? If it is what you want, it should strictly be a workflow decision
+that has nothing to do with anything else.
 
 **Why Sphinx over other static website generators?**
 
@@ -67,6 +72,8 @@ You probably did your research and you're probably thinking that:
     (or expensive) the day you want to migrate to the next *cool* language/technology.
   - Hugo is blazing fast, but its support of reStructuredText is limited.
   - Other generators look really promising but the small community makes you feel that you should not use them for professional purposes.
+  - Sphinx is not perfect either but I found that it provides more features than the other famous generators. More about this in the
+    :ref:`features <features>` section.
 
 For more information, there are plenty of very nice blog posts about this, here are a few links from blogs you should read:
 
@@ -83,6 +90,7 @@ Maybe these tools are not be applicable in your context.
    :maxdepth: 2
 
    features.rst
+   tools.rst
    continuousdeployment.rst
 
 
