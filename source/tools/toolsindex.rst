@@ -1,14 +1,15 @@
-Editing the docs
-----------------
+Tools
+=====
 
-The beauty of static website generators is that any tool that you feel comfortable with is the best tool for you.
+The beauty of static website generators is that you can choose any tool to edit the source files. So you are free
+to stick to your go-to editor.
 
 Once again, the idea here to leverage what the developers have been battle-testing for a while such as:
-- VIM, a free and amazing keyboard-only editor with a scary learning-curve but that allows you to type like no other editors.
-- VS Code, a free and highly customizable editor with a huge community behind it.
-- Atom, same a VS Code, but a bit more sluggish.
-- Sublime, a licence editor with extensions and great performance.
 
+- `VIM <https://www.vim.org/>`__: a free and amazing keyboard-only editor with a scary learning-curve but that allows you to type like no other editors.
+- `Visual Studio Code <https://code.visualstudio.com/>`__: a free and highly customizable editor with a huge community behind it.
+- `Atom <https://atom.io/>`__: the direct competitor of VS Code.
+- `Sublime <https://www.sublimetext.com/>`__: a proprietary editor with extensions and great performance.
 
 For me, the best editing tool for rST editing is `Visual Studio Code <https://code.visualstudio.com/>`__
 with the following extensions:
@@ -21,11 +22,14 @@ with the following extensions:
 - `Code Spell Checker <https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker>`__
 
 
-Tutorial
---------
+Customizing VS Code
+-------------------
+
+As mentionned earlier, VS code is customizable. Refer to the following links to get examples of what you can do to
+boost your productivity.
 
 .. toctree::
    :maxdepth: 3
-   :numbered:
 
    tasks.rst
+

@@ -3,6 +3,9 @@
 Continuous deployment
 ======================
 
+.. contents:: :local:
+
+
 Continuous deployment is a way to deploy (publish) software automatically and in short cycles.
 Typically, the process is build the software, test the software, deploy. If any of these steps fails, the process is
 interrupted.
