@@ -90,7 +90,7 @@ For more information, there are plenty of very nice blog posts about this, here 
 - `I'd rather be writing - Jekyll vs DITA <http://idratherbewriting.com/2015/03/23/new-series-jekyll-versus-dita/>`__
 
 Once again, this page offers a quick recap, not a comparison between traditional tooling and these lightweight tools.
-Maybe these tools are not be applicable in your context.
+These tools might not be applicable in your context.
 
 
 Table of contents

@@ -10,10 +10,11 @@ Feature list
 ------------
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    toc.rst
    linking.rst
+   audience.rst
 
 
 

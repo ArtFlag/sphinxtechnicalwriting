@@ -1,19 +1,18 @@
 
-Setting up Travis to test and publish the documentation
--------------------------------------------------------
+Publishing the docs with Travis
+-------------------------------
 
 Travis looks for a file called ``.travis.yml`` at the root of your repo in order to know
-what to do with it.
+what to do.
 
 .. admonition:: Objective recap
 
    We need to tell Travis to:
 
    #. Install the an OS image and Python, as well as other languages you need, for example ``node.js``.
-   #. Install all the pieces required to build the docs such as Sphinx and the extensions. Spoiler alert: that's why we needed
-      the ``requirements.txt`` early on.
+   #. Install all the pieces required to build the docs such as Sphinx and the extensions.
    #. Build the docs.
-   #. Run some tests.
+   #. (Optional) Run some tests.
    #. Publish the docs on GitHub pages.
 
 To automate the publishing of the documentation:
@@ -44,13 +43,19 @@ To automate the publishing of the documentation:
         local_dir: build/html
         on:
           branch: master
+        notifications:
+          email:
+            recipients:
+              - one@example.com # your email here
+            on_success: never
+            on_failure: always
 
    .. admonition:: Explanations
 
       This file tells to Travis to apply the following steps:
 
       #. Set up a system that runs Python 3.6.
-      #. Install nvm to be able to run node.js packages. We're not using this now but you might use node.js packages for your tests, so Travis is ready to go.
+      #. Install node.js 6. We're not using this now but you might use node.js packages for your tests.
       #. Install pip and install all the Python modules contained in ``requirements.txt`` (Sphinx & friends).
       #. Run ``make html`` to build the docs.
       #. If the build succeeds, publish the docs to GitHub Pages. If the build fails, you are notified by email and you can start fixing the problems.
