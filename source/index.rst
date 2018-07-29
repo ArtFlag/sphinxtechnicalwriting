@@ -26,11 +26,14 @@ Problem list
 Solution
 --------
 
+The solution is to use simple tools to build the documentation, test it, and publish it. It should be fast enough to
+allow you to update the docs in a few minutes and most importantly, the publishing should be automatic.
+
 The solution uses `GitHub <https://github.com/>`__, `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ and
 `Travis CI <https://github.com/>`__ but if you are using different tools, like Bitbucket, Jekyll and CircleCI, or a local
 install of Git, Hugo and another deployment platform, this webside should still be meaningful.
 
-Technical information related to technical writing is not easy to find on the internat so I hope this website can help some
+Technical information related to technical writing is not easy to find on the internet so I hope this website can help some
 other technical writers.
 
 To see why I think Sphinx is one of the best generators (in my context), see :ref:`features`.
@@ -91,6 +94,4 @@ Maybe these tools are not be applicable in your context.
 
    features.rst
    tools.rst
-   continuousdeployment.rst
-
-
+   cd/index.rst

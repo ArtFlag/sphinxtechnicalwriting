@@ -19,3 +19,13 @@ with the following extensions:
 - `Table formatter <https://marketplace.visualstudio.com/items?itemName=shuworks.vscode-table-formatter>`__
 - `Git History <https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory>`__
 - `Code Spell Checker <https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker>`__
+
+
+Tutorial
+--------
+
+.. toctree::
+   :maxdepth: 3
+   :numbered:
+
+   tasks.rst
