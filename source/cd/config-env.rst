@@ -1,6 +1,7 @@
+.. _config-env:
 
 Creating a development environment
-----------------------------------
+==================================
 
 Your repository hosts the content that must be built with our static website generator.
 The static website generator is not in the repository, only the documentation files and other configuration files are hosted.
@@ -39,3 +40,5 @@ To use it, contributors who already have Python installed, enter:
 
 Why do we care about our contributors so early in the project? Because Travis CI could be seen as one. A special
 contributor that only builds the documentation, and never contributes (sad).
+
+**Next step**: :ref:`config-github`.
