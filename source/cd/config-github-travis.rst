@@ -1,6 +1,7 @@
+.. _config-github:
 
 Linking GitHub and Travis
--------------------------
+=========================
 
 Travis CI is a service that can be integrated with GitHub and that can run scripts whenever specific GitHub events happen,
 such as a push, a pull request, etc.
@@ -26,3 +27,5 @@ To set it up:
    You should see Travis CI in the list of services already added.
 
 Travis has access to the repositories you ticked. You can now tell Travis what to do with your repo.
+
+**Next step:** :ref:`config-travis`.

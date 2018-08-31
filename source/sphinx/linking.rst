@@ -1,12 +1,13 @@
 Using aliases to create links
 -----------------------------
 
-Aliases are labels that you can attach to titles to avoid referring to the titles themselves
-in case they change. Instead you create a link to the alias and you get the freedom of changing the corresponding title
-as much as needed without worrying about broken links.
+Aliases are labels that you can attach to titles (or anything else) to avoid referring to the titles themselves in case they
+change. Instead you create a link to the alias and you get the freedom of changing the corresponding title as
+much as needed without worrying about broken links.
 
-This is essential as Sphinx is not a CMS. Changing a file name of lists of titles can potentially be a lot of work compared to proprietary software
-that will rename all links for you automatically.
+This is essential as Sphinx is not a :abbr:`CMS (Content Management System)`. Changing a file name or lists of
+titles can potentially be a lot of work compared to proprietary software that will rename all links for you
+automatically.
 
 For example, imagine the following title:
 
@@ -15,8 +16,7 @@ For example, imagine the following title:
    Creating aliases
    ----------------
 
-
-You can refer to it bu using the standard rST link markup:
+You can refer to it by using the standard rST link markup:
 
 .. code-block:: rst
 

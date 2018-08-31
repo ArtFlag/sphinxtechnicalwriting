@@ -1,24 +1,25 @@
 Targeted publishing
 ===================
 
-Targeted publishing consist in generating a specific version of the documentation for a specific audience from a single
-set of source files.
+Targeted publishing consists in generating a specific version of the documentation for a specific audience from
+a single set of source files.
 
-An obvious example is the difference between internal and public documentation. These are 2 audiences that intersect
-but the information for the internal audience must not be part of the public documentation. Let's make Sphinx
-generate 2 versions of the documentation for one repository (single-sourcing).
+An obvious example is the difference between internal and public documentation. These are 2 audiences that
+intersect but the information for the internal audience must not be part of the public documentation.
+
+Let's make Sphinx generate 2 versions of the documentation from one repository (single-sourcing).
 
 
 Tagging the internal content
 ----------------------------
 
-Before we can have Sphinx build the internal or public version of the documentation, you must tag each content section
-that is internal.
-
-You can use the ``only`` directive for this.
+Before we can have Sphinx build the internal or public version of the documentation, you must tag all the internal
+content with the ``only`` directive.
 See the `Sphinx documentation <http://www.sphinx-doc.org/en/stable/markup/misc.html#directive-only>`__.
-This directive takes one parameter that is a tag of your choice. In our case, ``internal`` sounds relatively sane.
-The content of the directive (the text indented below it) it what is considered as "tagged".
+
+This directive takes one parameter that is a tag/keyword of your choice. In our case, ``internal`` sounds
+relatively sane.
+The content of the directive (the text indented below it) is what is considered as "tagged".
 
 .. code-block:: rst
 
@@ -33,17 +34,18 @@ The content of the directive (the text indented below it) it what is considered 
 
     Some more public text here.
 
-If you try to buid the output now, the text would not appear, so let's configure Sphinx to build the internal output in which the
-text must appear.
+If you try to build the output using ``make html``, the *internal* text would not appear, so let's
+configure Sphinx to build the internal output in which the text must appear.
 
 
 Building the internal version
 -----------------------------
 
-The Sphinx command line (``sphinx-build``) can take the ``-t`` argument that allows you to specify which tags should be taken
-into consideration during the build.
+The Sphinx command line (``sphinx-build``) can take the ``-t`` argument that allows you to specify which tags
+should be taken into consideration during the build.
 
-#. Open the Makefile created by Sphinx in the root folder of the repository. It should look similar to the Makefile of the project used to build this website:
+#. Open the Makefile created by Sphinx in the root folder of the repository. It should look similar to the
+   Makefile of the project used to build this website:
 
    .. code-block:: guess
 
@@ -65,9 +67,13 @@ into consideration during the build.
         %: Makefile
         	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-   This file contains ``targets`` or specific keywords that run a set of instructions. For example, ``help`` is a target
-   that is run when you type ``make help``. The ``%`` target is a special target that is run for any command that is not ``help``.
+   This file contains *targets*, these are specific keywords that you attach to ``make`` such as ``make html`` to
+   run a set of instructions.
 
+   There are 2 targets in this file:
+
+   #. ``help``: it displays the help.
+   #. ``%``: this a special target that runs for any command that is not ``help``.
 
 #. Add a new target called ``htmlinternal``:
 
@@ -75,7 +81,6 @@ into consideration during the build.
 
       htmlinternal:
     	@echo "Building internal docs"
-    	@mkdir -p buildinternal
         @mkdir -p buildinternal/html
     	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "buildinternal/html" $(SPHINXOPTS) $(O) -t internal
 
@@ -85,5 +90,3 @@ into consideration during the build.
 
 .. important:: This is a great feature but its behaviour is a bit buggy and you should make sure to test your output
    when you use it.
-
-

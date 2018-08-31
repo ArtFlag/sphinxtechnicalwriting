@@ -1,6 +1,7 @@
+.. _config-travis:
 
 Publishing the docs with Travis
--------------------------------
+===============================
 
 Travis looks for a file called ``.travis.yml`` at the root of your repo in order to know
 what to do.
@@ -72,3 +73,12 @@ To automate the publishing of the documentation:
 #. From the Travis settings page of your repository, add a new encrypted environment variable called ``token``.
 
 #. Commit and push your file to your **master** branch.
+
+From now on, every time you push to the **master** branch, Travis builds the latest version of the docs and
+publishes the output on github pages just like this current website published on
+`https://artflag.github.io/sphinxtechnicalwriting/ <https://artflag.github.io/sphinxtechnicalwriting/>`__.
+
+You can bend this setup as needed, for example you can call your own publishing script. That script could
+publish your output files on Amazon S3, or copy the output files to your Apache server... Whatever works for you!
+
+If you managed to do all this by yourself, you should be able to befriend a developer to complete the project.

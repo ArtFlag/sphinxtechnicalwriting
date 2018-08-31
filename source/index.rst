@@ -1,5 +1,5 @@
-Using Sphinx for technical writing
-==================================
+Technical writing with Sphinx
+=============================
 
 ..
   .. contents:: :local:
@@ -39,7 +39,7 @@ The solution uses:
 - A continuous integration tool: `Travis CI <https://github.com/>`__
 
 If you are using different tools, like Bitbucket, Jekyll and CircleCI, or a local
-install of Git, Hugo and another deployment platform, this website should still be meaningful.
+install of Git, Hugo and another deployment platform, the content of this website should still be meaningful.
 
 Technical information related to technical writing is not easy to find on the Internet so I hope this website can help some
 other technical writers.
@@ -95,6 +95,11 @@ These tools might not be applicable in your context.
 
 Table of contents
 =================
+
+.. toctree::
+   :hidden:
+
+   self
 
 .. toctree::
    :maxdepth: 2
