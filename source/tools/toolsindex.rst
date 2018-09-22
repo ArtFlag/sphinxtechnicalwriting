@@ -1,5 +1,5 @@
-Editing tools
-=============
+Tools
+=====
 
 The beauty of static website generators is that you can choose any tool to edit the source files. So you are free
 to stick to your go-to editor.

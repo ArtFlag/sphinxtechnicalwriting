@@ -64,3 +64,4 @@ Tutorial
    config-env.rst
    config-github-travis.rst
    config-travis.rst
+   ideas.rst

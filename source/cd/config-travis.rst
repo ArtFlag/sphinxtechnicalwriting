@@ -70,7 +70,9 @@ To automate the publishing of the documentation:
 
 #. Copy the token.
 
-#. From the Travis settings page of your repository, add a new encrypted environment variable called ``token``.
+#. From the Travis settings page of your repository, add a new encrypted environment variable called ``token``:
+
+   .. figure:: images/travis-env.png
 
 #. Commit and push your file to your **master** branch.
 
