@@ -1,24 +1,26 @@
-Creating tasks
-==============
+Tasks
+=====
 
 VS Code allows you to create all sorts of tasks. A task is basically a command line, or a set of command lines
 that you can call from the VS Code interface directly. For example, in software development, a task
 could consist of calling a set of instructions to build the software and automatically run it in order to test it.
 
+
+Build the documentation
+-----------------------
+
 What is the one action that any tech writer needs to do when writing docs without a visual tool (:abbr:`WYSIWYG
 (What You See Is What You Get)`)? **Build the docs**. I personally build every few paragraphs, not necessarily to
 check the output, but just to make sure that I did not make mistakes while writing rST.
 
-
-Task: Build the documentation
------------------------------
+Let's create a task that triggers a build from a keyboard shortcut:
 
 #. Open a new task file:
 
    #. Press ``Cmd-Shift-P``.
    #. Type ``task``.
-   #. Select :guilabel:`Tasks: Configure default build task` and select the default option. A new file opens containing
-      the default skeleton of a task.
+   #. Select :guilabel:`Tasks: Configure default build task` and select the default option.
+      A new file opens containing the default skeleton of a task.
 
 #. Replace the whole content by the following code:
 
@@ -52,8 +54,8 @@ That's cool, no more window shifting when you want to build but you still have t
 output of the file that you were editing.
 
 
-Task: Open the output of the current file
------------------------------------------
+Open the output of the current file
+-----------------------------------
 
 The idea of this task is to look at which file is displayed in VS Code, which should be the file you have
 working on, and open it in your browser.
@@ -109,6 +111,6 @@ working on, and open it in your browser.
       in your repository but aside this case, it's a great time saver.
 
 #. Save.
-#. To run it, press ``Cmd-Shift-B`` and select :guilabel:`open page`, and the page opens in your default browser.
+#. To run it, press ``Cmd-Shift-B`` and select :guilabel:`open page`. The page opens in your default browser.
 
 If you find yourself repeating the same actions, think about adding more tasks.

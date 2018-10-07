@@ -22,7 +22,7 @@
                 "reveal": "always"
             },
             "group": {
-                "kind": "build",
+                "kind": "test",
                 "isDefault": true
             },
             "problemMatcher": []
