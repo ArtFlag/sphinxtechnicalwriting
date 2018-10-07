@@ -1,7 +1,7 @@
 .. _vscode-config:
 
-VS Code settings
-================
+Settings
+========
 
 The settings for VS Code partly depend on the extensions that you installed, but here are some recommended
 core settings. To you use them:
