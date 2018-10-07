@@ -1,10 +1,11 @@
 Tools
 =====
 
-The beauty of static website generators is that you can choose any tool to edit the source files. So you are free
-to stick to your go-to editor.
+The beauty of static website generators is that you or any contributor can choose any tool to edit the source
+files.
 
-Once again, the idea here to leverage what the developers have been battle-testing for a while such as:
+Once again, the idea here to leverage what the developers have been battle-testing for a while such as these
+editing tools:
 
 - `VIM <https://www.vim.org/>`__: a free and amazing keyboard-only editor with a nasty learning-curve but that
   allows you to edit files at the speed of light.
@@ -17,8 +18,8 @@ Once again, the idea here to leverage what the developers have been battle-testi
 VS Code
 -------
 
-For me, the best editing tool for rST editing is `Visual Studio Code <https://code.visualstudio.com/>`__
-with the following extensions:
+For me, `Visual Studio Code <https://code.visualstudio.com/>`__ is the best editor paired with the following
+extensions:
 
 - `VSCode Vim <https://marketplace.visualstudio.com/items?itemName=vscodevim.vim>`__
 - `reStructuredText <https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext>`__
@@ -27,15 +28,9 @@ with the following extensions:
 - `Git History <https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory>`__
 - `Code Spell Checker <https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker>`__
 
-
-Customizing VS Code
--------------------
-
-As mentionned earlier, VS Code is customizable. Refer to the following links to get examples of what you can do to
-boost your productivity.
+About VS Code:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
-   tasks.rst
-   config.rst
+   custo.rst

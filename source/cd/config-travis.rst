@@ -40,7 +40,7 @@ To automate the publishing of the documentation:
       deploy:
         provider: pages
         skip_cleanup: true
-        github_token: $token #set in the Travis dashboard
+        github_token: $token # set in the Travis dashboard
         local_dir: build/html
         on:
           branch: master

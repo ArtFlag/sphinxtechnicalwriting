@@ -8,7 +8,7 @@ I feel that it is extremely confusing and that it prevents me from understanding
 the writer.
 
 Fear not, it is possible to display one static TOC by using the ``fulltoc`` extension.
-Refer to the`installation procedure <https://sphinxcontrib-fulltoc.readthedocs.io/en/latest/install.html#basic-installation>`__.
+Refer to the `installation procedure <https://sphinxcontrib-fulltoc.readthedocs.io/en/latest/install.html#basic-installation>`__.
 
 You can now split your TOC in as many sections as you need, and they will stay with the user regardless of
 the page they are reading.
