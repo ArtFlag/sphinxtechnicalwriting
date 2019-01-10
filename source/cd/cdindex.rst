@@ -27,7 +27,7 @@ Final setup
 
 The result of the tutorial is the following setup:
 
-#. A central Git repository contains the documentation sources.
+#. A central Git repository that contains the documentation sources.
 #. Every time a pull request is sent to the master repository:
 
    #. Build the documentation using the source files of the branch.
