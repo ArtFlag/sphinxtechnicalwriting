@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/ArtFlag/sphinxtechnicalwriting.svg?branch=master)](https://travis-ci.org/ArtFlag/sphinxtechnicalwriting)
+- Travis [![Build Status](https://travis-ci.org/ArtFlag/sphinxtechnicalwriting.svg?branch=master)](https://travis-ci.org/ArtFlag/sphinxtechnicalwriting)
+- RTD [![Documentation Status](https://readthedocs.org/projects/sphinxtechnicalwriting/badge/?version=latest)](https://sphinxtechnicalwriting.readthedocs.io/?badge=latest)
 
 # Sphinx Technical Writing
 
