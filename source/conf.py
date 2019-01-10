@@ -56,6 +56,7 @@ todo_include_todos = True
 # a list of builtin themes.
 if on_rtd:
     # managed automatically by rtd
+    pass
 else:
     html_theme = 'sphinx_rtd_theme'
 
