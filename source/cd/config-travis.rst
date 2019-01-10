@@ -78,7 +78,7 @@ To automate the publishing of the documentation:
 
 From now on, every time you push to the **master** branch, Travis builds the latest version of the docs and
 publishes the output on github pages just like this current website published on
-`https://artflag.github.io/sphinxtechnicalwriting/ <https://artflag.github.io/sphinxtechnicalwriting/>`__.
+`GitHub Pages <https://artflag.github.io/sphinxtechnicalwriting/>`__.
 
 You can bend this setup as needed, for example you can call your own publishing script. That script could
 publish your output files on Amazon S3, or copy the output files to your Apache server... Whatever works for you!
