@@ -47,7 +47,7 @@ should be taken into consideration during the build.
 #. Open the Makefile created by Sphinx in the root folder of the repository. It should look similar to the
    Makefile of the project used to build this website:
 
-   .. code-block:: guess
+   .. code-block:: make
 
         # You can set these variables from the command line.
         SPHINXOPTS    = --color
