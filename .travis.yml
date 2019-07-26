@@ -1,20 +1,31 @@
+dist: xenial # needed to use python 3.7
 language: python
 branches:
   only:
-  - master
+    - master
 python:
-- '3.6'
-node_js: 6
+  - 3.7
 install:
-- pip install -U pip
-- pip install -r requirements.txt
+  - pip install -U pip
+  - pip install -r requirements.txt # install the required packages
+  - go get github.com/errata-ai/vale # install vale
 script:
-- make html
-after_success:
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: "$token"
-  local_dir: build/html
-  on:
-    branch: master
+  - skip # Travis requires a `script` property, but we do not need it
+stages:
+  - build and lint
+  - deploy
+jobs:
+  include:
+    - stage: build and test # This stage builds and lints in parallel
+      name: Build
+      script: make html # build the docs
+    - script: vale source/* # run Vale
+      name: Test
+      - stage: deploy
+        name: Deploy to S3
+        if: (NOT type IN (pull_request)) AND (branch = master) # only deploy if merging on master
+        deploy:
+          provider: pages # deploy on github pages
+          skip_cleanup: true
+          github_token: "$token" # defined via the Travis interface
+          local_dir: build/html
