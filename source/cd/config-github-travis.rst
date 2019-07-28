@@ -28,4 +28,4 @@ To set it up:
 
 Travis has access to the repositories you ticked. You can now tell Travis what to do with your repo.
 
-**Next step:** :ref:`config-travis`.
+**Next step:** :ref:`config-tests`.

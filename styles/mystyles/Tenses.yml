@@ -1,0 +1,7 @@
+extends: existence
+message: "'%s' is an uncertain tense. Use the present instead."
+ignorecase: true
+level: error
+tokens:
+  - ought
+  - shall

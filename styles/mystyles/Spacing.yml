@@ -1,0 +1,8 @@
+extends: existence
+message: "'%s' has a double space."
+level: error
+nonword: true
+tokens:
+  - '[a-z][.?!][A-Z]'
+  - '[.?!] {2,}[A-Z]'
+  - '[a-zA-Z]  [A-Za-z]'
