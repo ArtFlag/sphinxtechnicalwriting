@@ -53,7 +53,7 @@ Let's define it:
       #. Run ``make html`` to build the docs.
       #. Run Vale to check for style issues.
 
-      *Deploy* deploys the docs to GitHub pages if the building and tests were successful.
+      *Deploy* deploys the docs to GitHub pages if the building and tests are successful.
 
 #. Commit and push your file to your **master** branch.
 
