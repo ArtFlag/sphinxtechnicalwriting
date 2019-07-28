@@ -19,13 +19,13 @@ jobs:
     - stage: build and test # This stage builds and lints in parallel
       name: Build
       script: make html # build the docs
-    - script: vale source/* # run Vale
+    - script: vale source # run vale
       name: Test
-      - stage: deploy
-        name: Deploy to S3
-        if: (NOT type IN (pull_request)) AND (branch = master) # only deploy if merging on master
-        deploy:
-          provider: pages # deploy on github pages
-          skip_cleanup: true
-          github_token: "$token" # defined via the Travis interface
-          local_dir: build/html
+    - stage: deploy
+      name: Deploy to S3
+      if: (NOT type IN (pull_request)) AND (branch = master) # only deploy if merging on master
+      deploy:
+        provider: pages # deploy on github pages
+        skip_cleanup: true
+        github_token: "$token" # defined via the Travis interface
+        local_dir: build/html
