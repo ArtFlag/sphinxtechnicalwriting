@@ -12,7 +12,7 @@ install:
 script:
   - skip # Travis requires a `script` property, but we do not need it
 stages:
-  - build and lint
+  - build and test
   - deploy
 jobs:
   include:
