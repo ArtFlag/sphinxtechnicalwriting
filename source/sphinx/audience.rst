@@ -18,7 +18,7 @@ content with the ``only`` `directive <http://www.sphinx-doc.org/en/stable/markup
 
 This directive takes one parameter that is a tag/keyword of your choice. The content of the directive (the text
 indented under it) is what is considered as "tagged". In our case, the ``internal`` tag sounds relatively sane
-to describe the tagged content. Other typical examples could be versions (1.2, 1.3...), or user types (admin, dev, enduser...).
+to describe the tagged content. Other typical examples are versions (1.2, 1.3...), or user types (admin, dev, enduser...).
 
 
 .. code-block:: rst

@@ -63,4 +63,5 @@ Tutorial
    config-repo.rst
    config-env.rst
    config-github-travis.rst
+   config-tests.rst
    config-travis.rst
