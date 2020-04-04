@@ -21,7 +21,7 @@ jobs:
     - stage: build and test # This stage builds and lints in parallel
       name: Build
       script: pipenv run make html # build the docs
-    - script: vale source # run vale
+    - script: vale --minAlertLevel error source # run vale
       name: Test
     - stage: deploy
       name: Deploy to GitHub Pages
