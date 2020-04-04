@@ -44,7 +44,7 @@ Let's define it:
 
    #. Set up a system that runs Python 3.7.
    #. Install pip and install all the Python modules contained in the ``requirements.txt`` or ``Pipfile`` file.
-   #. Define 2 `stages`_: *suild and test* and *deploy*.
+   #. Define 2 `stages`_: *build and test* and *deploy*.
       Stages are run sequentially but run the jobs they contain in parallel. A failed stage cancels the
       following stages.
 
