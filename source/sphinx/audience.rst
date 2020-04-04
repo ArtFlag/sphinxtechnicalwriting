@@ -18,7 +18,7 @@ content with the ``only`` `directive <http://www.sphinx-doc.org/en/stable/markup
 
 This directive takes one parameter that is a tag/keyword of your choice. The content of the directive (the text
 indented under it) is what is considered as "tagged". In our case, the ``internal`` tag sounds relatively sane
-to describe the tagged content. Other typical examples are versions (1.2, 1.3...), or user types (admin, dev, enduser...).
+to describe the tagged content. Other typical examples are versions (1.2, 1.3...), or user types (admin, dev, end user...).
 
 
 .. code-block:: rst
@@ -41,7 +41,7 @@ configure Sphinx to build the internal output in which the text must appear.
 Building the internal version
 -----------------------------
 
-The `Sphinx command line`_ (``sphinx-build``) can take the ``-t`` argument that allows you to specify which tags
+The `Sphinx command line`_ (``sphinx build``) can take the ``-t`` argument that allows you to specify which tags
 should be taken into consideration during the build.
 
 #. Open the Makefile created by Sphinx in the root folder of the repository. It should look similar to the
@@ -92,7 +92,7 @@ should be taken into consideration during the build.
 
    The output file are in the ``buildinternal/html`` folder.
 
-   .. note:: To build the publice documentation (or rather *non-internal* documentation, run:
+   .. note:: To build the public documentation (or rather *non-internal* documentation, run:
 
              .. code-block:: bash
 

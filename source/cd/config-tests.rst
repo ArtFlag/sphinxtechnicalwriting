@@ -50,7 +50,7 @@ Running Vale
 We've defined some styles, let's check if our documentation contains issues:
 
 #. `Install Vale`_.
-#. Open the termial to your project folder and run:
+#. Open the terminal to your project folder and run:
 
    .. code-block:: console
 
@@ -64,6 +64,6 @@ Vale reports the errors in your project, if any.
 **Next step:** :ref:`config-travis`.
 
 .. _Vale: https://github.com/errata-ai/vale/
-.. _Install Vale: https://errata-ai.github.io/vale/#installation
-.. _styles: https://errata-ai.github.io/vale/styles/mystyles/
-.. _Vale styles: https://github.com/testthedocs/vale-styles
+.. _Install Vale: https://errata-ai.gitbook.io/vale/getting-started/installation
+.. _styles: https://errata-ai.gitbook.io/vale/getting-started/styles
+.. _Vale styles: https://github.com/errata-ai/vale/tree/master/styles
