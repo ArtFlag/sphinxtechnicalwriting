@@ -20,7 +20,7 @@ jobs:
     - stage: build and test # This stage builds and lints in parallel
       name: Build
       script: pipenv run make html # build the docs
-      skip-cleanup: true
+      skip_cleanup: true
     - script: vale source # run vale
       name: Test
     - stage: deploy
