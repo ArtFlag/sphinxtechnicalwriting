@@ -5,10 +5,13 @@ verify_ssl = true
 
 [dev-packages]
 rstcheck = "*"
+black = "==19.10b0"
+flake8 = "*"
+doc8 = "*"
 
 [packages]
 sphinxcontrib-mermaid = "*"
-Sphinx = "*"
+Sphinx = "3.1.2"
 
 [requires]
 python_version = "3.7"
