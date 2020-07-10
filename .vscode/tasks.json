@@ -4,11 +4,12 @@
     {
       "label": "build",
       "type": "shell",
-      "command": "make html",
+      "command": "pipenv run make html",
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "problemMatcher": []
     },
     {
       "label": "open",
