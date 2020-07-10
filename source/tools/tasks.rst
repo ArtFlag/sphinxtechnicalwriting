@@ -114,3 +114,6 @@ working on, and open it in your browser.
 #. To run it, press ``Cmd-Shift-B`` and select :guilabel:`open page`. The page opens in your default browser.
 
 If you find yourself repeating the same actions, think about adding more tasks.
+
+You can make these tasks available to other users by creating a ``tasks.json`` file in the ``.vscode`` folder
+at the root of your repository.
