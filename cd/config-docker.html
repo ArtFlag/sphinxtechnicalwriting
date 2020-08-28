@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Using Docker &mdash; Sphinx technical writing  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Sphinx technical writing  documentation" href="../index.html"/>
+        <link rel="up" title="Continuous deployment" href="cdindex.html"/>
+        <link rel="prev" title="5. Publishing the docs with Travis" href="config-travis.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sphinx technical writing
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Technical writing with Sphinx</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/sphinxfeatures.html">Sphinx features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/toolsindex.html">Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cdindex.html">Continuous deployment</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#final-setup">Final setup</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="cdindex.html#tutorial">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="config-repo.html">1. Configuring the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-env.html">2. Creating a development environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-github-travis.html">3. Linking GitHub and Travis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-tests.html">4. Setting up tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-travis.html">5. Publishing the docs with Travis</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6. Using Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-dockerfile">6.1. Creating a Dockerfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-image">6.2. Building the image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-image">6.3. Using the image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">6.4. Next steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sphinx technical writing</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="cdindex.html">Continuous deployment</a> &raquo;</li>
+        
+      <li><span class="section-number">6. </span>Using Docker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cd/config-docker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-docker">
+<span id="docker"></span><h1><span class="section-number">6. </span>Using Docker<a class="headerlink" href="#using-docker" title="Permalink to this headline">¶</a></h1>
+<p>Docker is a way to make any project easier and potentially faster to build.</p>
+<p>In a nut shell, Docker allows you to build <strong>images</strong>. An image contains everything required by a project,
+typically:</p>
+<ul class="simple">
+<li><p>The operating system, such as Linux.</p></li>
+<li><p>The dependencies, such as Python and sphinx and your sphinx extensions.</p></li>
+<li><p>Your source code (or docs files).</p></li>
+</ul>
+<p>When you run an image, it turns into a virtual machine, called container, in which you can run your app. It might
+sound a bit similar to the virtual environment mentioned in <a class="reference internal" href="config-env.html#config-env"><span class="std std-ref">Creating a development environment</span></a>, but it’s completely stand alone.</p>
+<p>It also offers other valuable features of caching/layering that help speed up your builds.
+Read more about its main concepts on the <a class="reference external" href="https://www.docker.com/resources/what-container">Docker website</a>.</p>
+<div class="section" id="creating-a-dockerfile">
+<h2><span class="section-number">6.1. </span>Creating a Dockerfile<a class="headerlink" href="#creating-a-dockerfile" title="Permalink to this headline">¶</a></h2>
+<p>The first step towards building our project with Docker is to create an image. This image defines what we need
+to build our project. See the <a class="reference external" href="https://docs.docker.com/engine/reference/commandline/images/">Docker docs</a>.</p>
+<p>The standard name for a Docker file is <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> (genius stuff).</p>
+<div class="section" id="choosing-the-base-image">
+<h3><span class="section-number">6.1.1. </span>Choosing the base image<a class="headerlink" href="#choosing-the-base-image" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned earlier, we must choose the operating system first. There are many images for various operating
+systems on <a class="reference external" href="https://hub.docker.com/search?q=linux&amp;type=image">Docker Hub</a>. These are called base images,
+because they are the starting point of any Docker image.</p>
+<p>We could install any of these images, and then install what we need, such as Python and our dependencies.
+This is a task that all Python developers perform often, so in order to speed up the process,
+the Python foundation already provides many images that contain Python. See the <a class="reference external" href="https://hub.docker.com/_/python">list of images</a>.</p>
+<p>Let’s pick a Python version, we want to use <strong>Python 3.8.2</strong>. This is somewhat arbitrary and more importantly, it is
+used in our <a class="reference external" href="https://github.com/ArtFlag/sphinxtechnicalwriting/blob/master/Pipfile">Pipfile</a>, so we have to match this version for coherence purposes.</p>
+<p>The second choice is the type of Python image. As you can see, there are Buster images, Alpine images, and more.
+These are different versions of Linux. Python cannot run on its own, it must run on an operating system so
+these Python images are also based on other images (the Linux images).</p>
+<p>To keep the choice simple, it’s <a class="reference external" href="https://pythonspeed.com/articles/base-image-python-docker-images/">good practice</a> to use the smallest image possible. Let’s choose
+<code class="docutils literal notranslate"><span class="pre">3.8.2-slim-buster</span></code>. It’s a standard choice for a lot of Python projects and a rather lightweight image
+that contains most of what we need.</p>
+<p>To use it in our Dockerfile, we simply write:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM python:3.8-slim-buster
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-the-dependencies">
+<h3><span class="section-number">6.1.2. </span>Installing the dependencies<a class="headerlink" href="#installing-the-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>We have a base image that runs Python on Linux (Debian). We can add our dependencies.</p>
+<p>This is a more complicated step as we need to understand what’s in the base image, and what’s not.
+In our case:</p>
+<ul class="simple">
+<li><p>we need everything from our <a class="reference external" href="https://github.com/ArtFlag/sphinxtechnicalwriting/blob/master/Pipfile">Pipfile</a>, so we install <code class="docutils literal notranslate"><span class="pre">pipenv</span></code>.</p></li>
+<li><p>we want to use our <a class="reference external" href="https://github.com/ArtFlag/sphinxtechnicalwriting/blob/master/Makefile">Makefile</a>  to build the docs, so we install <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p></li>
+</ul>
+<p>It’s also good practice to install security updates and also get rid of cached files.</p>
+<p>To do this, we use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RUN apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  apt-get -y upgrade <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  apt-get install -y make <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  apt-get clean <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  rm -rf /var/lib/apt/lists/* <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  pip install --no-cache-dir --upgrade pip <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  pip install --no-cache-dir pipenv
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">RUN</span></code> instruction allows us to execute any command. These commands are standard Debian commands
+to install packages.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Without getting into too much detail, no caching is needed in a Docker image and the lighter the
+image the better, so we delete the cache using <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/var/lib/apt/lists/*</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">no-cache-dir</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RUN</span></code> (as as all <code class="docutils literal notranslate"><span class="pre">COPY</span></code> and <code class="docutils literal notranslate"><span class="pre">ADD</span></code>) instruction also creates <a class="reference external" href="https://dzone.com/articles/docker-layers-explained">layers</a>. It’s a
+topic in itself but Docker recommends to separate installation instructions from what almost never
+changes, to what changes more often to optimize build times. In your case, we don’t need much,
+and these package never change so they come into the initial RUN instruction.</p>
+</div>
+<p>To modify what’s installed in this image, you would typically add package names after <code class="docutils literal notranslate"><span class="pre">make</span></code>.
+The rest can stay if you require <code class="docutils literal notranslate"><span class="pre">pipenv</span></code>.</p>
+</div>
+<div class="section" id="setting-the-work-directory">
+<h3><span class="section-number">6.1.3. </span>Setting the work directory<a class="headerlink" href="#setting-the-work-directory" title="Permalink to this headline">¶</a></h3>
+<p>Our image doesn’t contain any of our files at the moment, only Linux and extra packages.
+In the next step, we will copy files from our repository to the image, but now, let’s set the working directory
+to the name of the repository.</p>
+<p>We do this with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WORKDIR /sphinxtechnicalwriting
+</pre></div>
+</div>
+<p>This folder is now the default path for all the following commands we will run.</p>
+</div>
+<div class="section" id="copying-files">
+<h3><span class="section-number">6.1.4. </span>Copying files<a class="headerlink" href="#copying-files" title="Permalink to this headline">¶</a></h3>
+<p>The objective of the image is to install our project dependencies, they are listed in our Pipfile.
+We have installed Pipenv, so before we can use it to install our dependencies, we must copy our Pipfile and Pipfile.lock files
+to our image. If the image does not contain them, it will not be able to install anything.</p>
+<p>We do this with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>COPY Pipfile Pipfile.lock /sphinxtechnicalwriting/
+</pre></div>
+</div>
+<p>Notice that we copy them to our working directory.</p>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">6.1.5. </span>Installing the dependencies<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We have copied our dependency list to our image, we can now build them in our image.</p>
+<p>We do this with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RUN pipenv install --system --deploy
+</pre></div>
+</div>
+<p>This command is similar to what we used in <a class="reference internal" href="config-env.html#config-env"><span class="std std-ref">Creating a development environment</span></a> but slightly modified for Docker use. It
+doesn’t create a virtual environment but installs everything at system level and also install the packages
+from the lock file. See the <a class="reference external" href="https://pipenv.pypa.io/en/latest/advanced/#using-pipenv-for-deployments">Pipenv docs</a>.</p>
+</div>
+</div>
+<div class="section" id="building-the-image">
+<h2><span class="section-number">6.2. </span>Building the image<a class="headerlink" href="#building-the-image" title="Permalink to this headline">¶</a></h2>
+<p>We have the following Dockerfile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">python</span><span class="p">:</span><span class="mf">3.8</span><span class="o">-</span><span class="n">slim</span><span class="o">-</span><span class="n">buster</span>
+
+<span class="c1"># Update package listing and install security updates and</span>
+<span class="c1"># make and pipenv</span>
+
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">y</span> <span class="n">upgrade</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">recommends</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">clean</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/*</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span> <span class="o">&amp;&amp;</span> \
+    <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="n">pipenv</span>
+
+<span class="c1"># Set the working directory to our repo root</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">sphinxtechnicalwriting</span>
+
+<span class="c1"># Only copy the Pipfile</span>
+<span class="n">COPY</span> <span class="n">Pipfile</span> <span class="n">Pipfile</span><span class="o">.</span><span class="n">lock</span> <span class="o">/</span><span class="n">sphinxtechnicalwriting</span><span class="o">/</span>
+
+<span class="c1"># Install the packages</span>
+<span class="n">RUN</span> <span class="n">pipenv</span> <span class="n">install</span> <span class="o">--</span><span class="n">system</span> <span class="o">--</span><span class="n">deploy</span>
+</pre></div>
+</div>
+<p>To build it, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t sphinx_image .
+</pre></div>
+</div>
+<p>This creates an image named <code class="docutils literal notranslate"><span class="pre">sphinx_image</span></code>.</p>
+</div>
+<div class="section" id="using-the-image">
+<h2><span class="section-number">6.3. </span>Using the image<a class="headerlink" href="#using-the-image" title="Permalink to this headline">¶</a></h2>
+<p>Once you have built the image, you can run any command in it using:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">sphinx_image</span> <span class="pre">&lt;command&gt;</span></code></p>
+<p>For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run sphinx_image <span class="nb">echo</span> <span class="s2">&quot;hello&quot;</span>
+</pre></div>
+</div>
+<p>prints <code class="docutils literal notranslate"><span class="pre">hello</span></code>.</p>
+<p>We created the image to build the docs so let’s use our Makefile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run sphinx_image make html
+</pre></div>
+</div>
+<p>This outputs <code class="docutils literal notranslate"><span class="pre">make:</span> <span class="pre">***</span> <span class="pre">No</span> <span class="pre">rule</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">target</span> <span class="pre">'html'.</span>&#160; <span class="pre">Stop.</span></code>, which is normal since there is no makefile in
+this image. There is only our dependencies.</p>
+<p>Let’s create a volume to share our repository with the docker image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/sphinxtechnicalwriting sphinx_image make html
+</pre></div>
+</div>
+<p>The docs are built and the output is in the same folder as when you run it locally.</p>
+</div>
+<div class="section" id="next-steps">
+<h2><span class="section-number">6.4. </span>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>There’s no real benefit in using Docker if you’ve already set up a local environment, but if you haven’t
+you can build the docs in 2 commands, which is great:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t sphinx_image .
+docker run -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/sphinxtechnicalwriting sphinx_image make html
+</pre></div>
+</div>
+<p>You can also use this image in your CI pipeline to get reproducible builds, and speed them up by using a Docker
+image registry.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="config-travis.html" class="btn btn-neutral" title="5. Publishing the docs with Travis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ArtFlag.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

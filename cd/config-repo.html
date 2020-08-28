@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Configuring the repository &mdash; Sphinx technical writing  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Sphinx technical writing  documentation" href="../index.html"/>
+        <link rel="up" title="Continuous deployment" href="cdindex.html"/>
+        <link rel="next" title="2. Creating a development environment" href="config-env.html"/>
+        <link rel="prev" title="Continuous deployment" href="cdindex.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sphinx technical writing
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Technical writing with Sphinx</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/sphinxfeatures.html">Sphinx features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/toolsindex.html">Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cdindex.html">Continuous deployment</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#final-setup">Final setup</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="cdindex.html#tutorial">Tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1. Configuring the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-env.html">2. Creating a development environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-github-travis.html">3. Linking GitHub and Travis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-tests.html">4. Setting up tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-travis.html">5. Publishing the docs with Travis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-docker.html">6. Using Docker</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sphinx technical writing</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="cdindex.html">Continuous deployment</a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>Configuring the repository</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cd/config-repo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuring-the-repository">
+<span id="config-repo"></span><h1><span class="section-number">1. </span>Configuring the repository<a class="headerlink" href="#configuring-the-repository" title="Permalink to this headline">¶</a></h1>
+<p>Before you begin, make sure you are the admin of the documentation repo.</p>
+<p>Protect the master branch so that no one is allowed to push to it:</p>
+<ol class="arabic simple">
+<li><p>Connect to your GitHub account and open your repository.</p></li>
+<li><p>Click <span class="guilabel">Settings</span> &gt; <span class="guilabel">Branches</span>.</p></li>
+<li><p>In <span class="guilabel">Protected Branches</span>, select <span class="guilabel">Master</span> and select the following options:</p>
+<ul class="simple">
+<li><p><span class="guilabel">Protect this branch</span></p></li>
+<li><p><span class="guilabel">Require pull request reviews before merging</span></p></li>
+<li><p><span class="guilabel">Require status checks to pass before merging</span></p></li>
+<li><p><span class="guilabel">Require branches to be up to date before merging</span></p></li>
+</ul>
+</li>
+<li><p>Click <span class="guilabel">Save changes</span>.</p></li>
+</ol>
+<p>If you are the admin of your repo, you’re now the only captain on board, which is good in this case because nobody
+will be able to mess up the published documentation (Master branch) without you knowing about this.</p>
+<p><strong>Next step:</strong> <a class="reference internal" href="config-env.html#config-env"><span class="std std-ref">Creating a development environment</span></a>.</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config-env.html" class="btn btn-neutral float-right" title="2. Creating a development environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cdindex.html" class="btn btn-neutral" title="Continuous deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ArtFlag.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

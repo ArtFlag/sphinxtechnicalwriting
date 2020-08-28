@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Setting up tests &mdash; Sphinx technical writing  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Sphinx technical writing  documentation" href="../index.html"/>
+        <link rel="up" title="Continuous deployment" href="cdindex.html"/>
+        <link rel="next" title="5. Publishing the docs with Travis" href="config-travis.html"/>
+        <link rel="prev" title="3. Linking GitHub and Travis" href="config-github-travis.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sphinx technical writing
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Technical writing with Sphinx</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/sphinxfeatures.html">Sphinx features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/toolsindex.html">Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cdindex.html">Continuous deployment</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#final-setup">Final setup</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="cdindex.html#tutorial">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="config-repo.html">1. Configuring the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-env.html">2. Creating a development environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-github-travis.html">3. Linking GitHub and Travis</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4. Setting up tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defining-styles">4.1. Defining styles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-vale">4.2. Running Vale</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="config-travis.html">5. Publishing the docs with Travis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-docker.html">6. Using Docker</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sphinx technical writing</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="cdindex.html">Continuous deployment</a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>Setting up tests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cd/config-tests.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setting-up-tests">
+<span id="config-tests"></span><h1><span class="section-number">4. </span>Setting up tests<a class="headerlink" href="#setting-up-tests" title="Permalink to this headline">¶</a></h1>
+<p>Now that Travis can tap into the repository, we can prepare task for it to perform. An essential part
+is testing. The first obvious test is <em>Can the docs be built?</em>. Other tests are usually:</p>
+<ul class="simple">
+<li><p>Is the spelling ok?</p></li>
+<li><p>Are the docs matching my style guide?</p></li>
+</ul>
+<p>We can tests these using <a class="reference external" href="https://github.com/errata-ai/vale/">Vale</a>. It is a command line tool that checks user-defined patterns. Let’s set it up.</p>
+<div class="section" id="defining-styles">
+<h2><span class="section-number">4.1. </span>Defining styles<a class="headerlink" href="#defining-styles" title="Permalink to this headline">¶</a></h2>
+<p>To understand how to define styles, see the <a class="reference external" href="https://errata-ai.gitbook.io/vale/getting-started/styles">official docs</a>.</p>
+<p>Let’s define 3 styles:
+- Forbid <code class="docutils literal notranslate"><span class="pre">please</span></code> or <code class="docutils literal notranslate"><span class="pre">thank</span> <span class="pre">you</span></code>.
+- Forbid double spaces.
+- Forbid the use of uncertain tenses (<code class="docutils literal notranslate"><span class="pre">should</span></code>, <code class="docutils literal notranslate"><span class="pre">ought</span></code>…).</p>
+<ol class="arabic">
+<li><p>At the root of your project, create a folder <code class="docutils literal notranslate"><span class="pre">styles</span></code>.</p></li>
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">Polite.yml</span></code> that contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extends</span><span class="p">:</span> <span class="n">existence</span>
+<span class="n">message</span><span class="p">:</span> <span class="s1">&#39;Do not use “</span><span class="si">%s</span><span class="s1">” in technical documentation.&#39;</span>
+<span class="n">level</span><span class="p">:</span> <span class="n">error</span>
+<span class="n">ignorecase</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">tokens</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">please</span>
+  <span class="o">-</span> <span class="n">thank</span> <span class="n">you</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">Spacing.yml</span></code> that contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extends</span><span class="p">:</span> <span class="n">existence</span>
+<span class="n">message</span><span class="p">:</span> <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; has a double space.&quot;</span>
+<span class="n">level</span><span class="p">:</span> <span class="n">error</span>
+<span class="n">nonword</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">tokens</span><span class="p">:</span>
+  <span class="o">-</span> <span class="s1">&#39;[a-z][.?!][A-Z]&#39;</span>
+  <span class="o">-</span> <span class="s1">&#39;[.?!] {2,}[A-Z]&#39;</span>
+  <span class="o">-</span> <span class="s1">&#39;[a-zA-Z]  [A-Za-z]&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">Tenses.yml</span></code> that contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extends</span><span class="p">:</span> <span class="n">existence</span>
+<span class="n">message</span><span class="p">:</span> <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; is an uncertain tense. Use the present instead.&quot;</span>
+<span class="n">ignorecase</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">level</span><span class="p">:</span> <span class="n">error</span>
+<span class="n">tokens</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">ought</span>
+  <span class="o">-</span> <span class="n">shall</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add these 3 files to the <code class="docutils literal notranslate"><span class="pre">styles</span></code> folder.</p></li>
+<li><p>At the root of you project, create a file named <code class="docutils literal notranslate"><span class="pre">.vale.ini</span></code> that contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">StylesPath</span> <span class="o">=</span> <span class="o">./</span><span class="n">styles</span>
+<span class="n">MinAlertLevel</span> <span class="o">=</span> <span class="n">suggestion</span>
+
+<span class="p">[</span><span class="o">*.</span><span class="p">{</span><span class="n">md</span><span class="p">,</span><span class="n">rst</span><span class="p">}]</span>
+<span class="n">BasedOnStyles</span> <span class="o">=</span> <span class="n">mystyles</span>
+
+<span class="n">vale</span><span class="o">.</span><span class="n">Redundancy</span> <span class="o">=</span> <span class="n">YES</span>
+<span class="n">vale</span><span class="o">.</span><span class="n">Repetition</span> <span class="o">=</span> <span class="n">YES</span>
+<span class="n">vale</span><span class="o">.</span><span class="n">GenderBias</span> <span class="o">=</span> <span class="n">YES</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>There are compilations of styles available, see <a class="reference external" href="https://github.com/errata-ai/vale/tree/master/styles">Vale styles</a>.</p>
+</div>
+<div class="section" id="running-vale">
+<h2><span class="section-number">4.2. </span>Running Vale<a class="headerlink" href="#running-vale" title="Permalink to this headline">¶</a></h2>
+<p>We’ve defined some styles, let’s check if our documentation contains issues:</p>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://errata-ai.gitbook.io/vale/getting-started/installation">Install Vale</a>.</p></li>
+<li><p>Open the terminal to your project folder and run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vale source</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Vale reports the errors in your project, if any.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vale errors do not prevent Sphinx from building.</p>
+</div>
+<p><strong>Next step:</strong> <a class="reference internal" href="config-travis.html#config-travis"><span class="std std-ref">Publishing the docs with Travis</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config-travis.html" class="btn btn-neutral float-right" title="5. Publishing the docs with Travis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="config-github-travis.html" class="btn btn-neutral" title="3. Linking GitHub and Travis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ArtFlag.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

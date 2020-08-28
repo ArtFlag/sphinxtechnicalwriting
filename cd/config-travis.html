@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Publishing the docs with Travis &mdash; Sphinx technical writing  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Sphinx technical writing  documentation" href="../index.html"/>
+        <link rel="up" title="Continuous deployment" href="cdindex.html"/>
+        <link rel="next" title="6. Using Docker" href="config-docker.html"/>
+        <link rel="prev" title="4. Setting up tests" href="config-tests.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sphinx technical writing
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Technical writing with Sphinx</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/sphinxfeatures.html">Sphinx features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/toolsindex.html">Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cdindex.html">Continuous deployment</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdindex.html#final-setup">Final setup</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="cdindex.html#tutorial">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="config-repo.html">1. Configuring the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-env.html">2. Creating a development environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-github-travis.html">3. Linking GitHub and Travis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-tests.html">4. Setting up tests</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5. Publishing the docs with Travis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generating-a-travis-token">5.1. Generating a Travis token</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-the-travis-config-file">5.2. Creating the Travis config file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="config-docker.html">6. Using Docker</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sphinx technical writing</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="cdindex.html">Continuous deployment</a> &raquo;</li>
+        
+      <li><span class="section-number">5. </span>Publishing the docs with Travis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cd/config-travis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="publishing-the-docs-with-travis">
+<span id="config-travis"></span><h1><span class="section-number">5. </span>Publishing the docs with Travis<a class="headerlink" href="#publishing-the-docs-with-travis" title="Permalink to this headline">¶</a></h1>
+<p>We need to tell Travis to:</p>
+<ol class="arabic simple">
+<li><p>Install everything required by our project.</p></li>
+<li><p>Build the docs.</p></li>
+<li><p>Run some tests via Vale. See the <a class="reference internal" href="config-tests.html#config-tests"><span class="std std-ref">previous step</span></a>.</p></li>
+<li><p>Publish the docs on GitHub pages.</p></li>
+</ol>
+<div class="section" id="generating-a-travis-token">
+<h2><span class="section-number">5.1. </span>Generating a Travis token<a class="headerlink" href="#generating-a-travis-token" title="Permalink to this headline">¶</a></h2>
+<p>You need to create a Travis token to allow it to use your GitHub account account.</p>
+<ol class="arabic">
+<li><p>Log in to your GitHub account and go into <span class="guilabel">Settings</span> &gt; <span class="guilabel">Developer settings</span>
+&gt; <span class="guilabel">Personal access tokens</span></p></li>
+<li><p>Click <span class="guilabel">Generate new token</span>, add a description, such as <code class="docutils literal notranslate"><span class="pre">Travis</span> <span class="pre">token</span></code> and tick the
+<span class="guilabel">repo</span> checkbox then click <span class="guilabel">Generate token</span>.</p></li>
+<li><p>Copy the token.</p></li>
+<li><p>From the Travis settings page of your repository, add a new encrypted environment variable called <code class="docutils literal notranslate"><span class="pre">token</span></code>:</p>
+<div class="figure align-default">
+<img alt="../_images/travis-env.png" src="../_images/travis-env.png" />
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="creating-the-travis-config-file">
+<h2><span class="section-number">5.2. </span>Creating the Travis config file<a class="headerlink" href="#creating-the-travis-config-file" title="Permalink to this headline">¶</a></h2>
+<p>To automate the publishing of the documentation, Travis looks for a <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file to know what to do.
+Let’s define it:</p>
+<ol class="arabic">
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> at the root of your repository.</p></li>
+<li><p>Dump the following content into the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dist</span><span class="p">:</span> <span class="n">xenial</span> <span class="c1"># needed to use python 3.7</span>
+<span class="n">language</span><span class="p">:</span> <span class="n">python</span>
+<span class="n">branches</span><span class="p">:</span>
+  <span class="n">only</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">master</span>
+<span class="n">python</span><span class="p">:</span>
+  <span class="o">-</span> <span class="mf">3.7</span>
+<span class="n">install</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">pip</span>
+  <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pipenv</span>
+  <span class="o">-</span> <span class="n">pipenv</span> <span class="n">install</span> <span class="c1"># set up the environment</span>
+  <span class="o">-</span> <span class="n">curl</span> <span class="o">-</span><span class="n">sfL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">install</span><span class="o">.</span><span class="n">goreleaser</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ValeLint</span><span class="o">/</span><span class="n">vale</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">sh</span> <span class="o">-</span><span class="n">s</span> <span class="n">v2</span><span class="o">.</span><span class="mf">1.0</span> <span class="c1"># install vale</span>
+  <span class="o">-</span> <span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="s2">&quot;./bin:$PATH&quot;</span>
+<span class="n">script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">skip</span> <span class="c1"># Travis requires a `script` property, but we do not need it</span>
+<span class="n">stages</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">build</span> <span class="ow">and</span> <span class="n">test</span>
+  <span class="o">-</span> <span class="n">deploy</span>
+<span class="n">jobs</span><span class="p">:</span>
+  <span class="n">include</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">stage</span><span class="p">:</span> <span class="n">build</span> <span class="ow">and</span> <span class="n">test</span> <span class="c1"># This stage builds and lints in parallel</span>
+      <span class="n">name</span><span class="p">:</span> <span class="n">Build</span>
+      <span class="n">script</span><span class="p">:</span> <span class="n">pipenv</span> <span class="n">run</span> <span class="n">make</span> <span class="n">html</span> <span class="c1"># build the docs</span>
+    <span class="o">-</span> <span class="n">script</span><span class="p">:</span> <span class="n">vale</span> <span class="o">--</span><span class="n">minAlertLevel</span> <span class="n">error</span> <span class="n">source</span> <span class="c1"># run vale</span>
+      <span class="n">name</span><span class="p">:</span> <span class="n">Test</span>
+    <span class="o">-</span> <span class="n">stage</span><span class="p">:</span> <span class="n">deploy</span>
+      <span class="n">name</span><span class="p">:</span> <span class="n">Deploy</span> <span class="n">to</span> <span class="n">GitHub</span> <span class="n">Pages</span>
+      <span class="k">if</span><span class="p">:</span> <span class="p">(</span><span class="n">NOT</span> <span class="nb">type</span> <span class="n">IN</span> <span class="p">(</span><span class="n">pull_request</span><span class="p">))</span> <span class="n">AND</span> <span class="p">(</span><span class="n">branch</span> <span class="o">=</span> <span class="n">master</span><span class="p">)</span> <span class="c1"># only deploy if merging on master</span>
+      <span class="n">script</span><span class="p">:</span> <span class="n">pipenv</span> <span class="n">run</span> <span class="n">make</span> <span class="n">html</span>
+      <span class="n">deploy</span><span class="p">:</span>
+        <span class="n">provider</span><span class="p">:</span> <span class="n">pages</span> <span class="c1"># deploy on github pages</span>
+        <span class="n">skip_cleanup</span><span class="p">:</span> <span class="n">true</span>
+        <span class="n">github_token</span><span class="p">:</span> <span class="s2">&quot;$token&quot;</span> <span class="c1"># defined via the Travis interface</span>
+        <span class="n">local_dir</span><span class="p">:</span> <span class="n">build</span><span class="o">/</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>This file tells to Travis to apply the following steps:</p>
+<ol class="arabic">
+<li><p>Set up a system that runs Python 3.8.2.</p></li>
+<li><p>Install pip and install all the Python modules contained in the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">Pipfile</span></code> file.</p></li>
+<li><p>Define 2 <a class="reference external" href="https://docs.travis-ci.com/user/build-stages/">stages</a>: <em>build and test</em> and <em>deploy</em>.
+Stages are run sequentially but run the jobs they contain in parallel. A failed stage cancels the
+following stages.</p>
+<p><em>build and test</em> does the following:</p>
+<ol class="arabic simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to build the docs.</p></li>
+<li><p>Run Vale to check for style issues.</p></li>
+</ol>
+<p><em>Deploy</em> deploys the docs to GitHub pages if the building and tests are successful.</p>
+</li>
+</ol>
+</li>
+<li><p>Commit and push your file to your <strong>master</strong> branch.</p></li>
+</ol>
+<p>From now on, every time you push to the <strong>master</strong> branch, Travis builds the latest version of the docs and
+publishes the output on github pages just like this current website published on
+<a class="reference external" href="https://artflag.github.io/sphinxtechnicalwriting/">GitHub Pages</a>.</p>
+<p>You can bend this setup as needed, for example you can call your own publishing script. You can use that script to
+publish your output files on Amazon S3, or copy the output files to your Apache server… Whatever works for you!</p>
+<p>If you managed to do all this by yourself, you should be able to befriend a developer to complete the project.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config-docker.html" class="btn btn-neutral float-right" title="6. Using Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="config-tests.html" class="btn btn-neutral" title="4. Setting up tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ArtFlag.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

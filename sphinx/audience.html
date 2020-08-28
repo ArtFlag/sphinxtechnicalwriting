@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Targeted publishing &mdash; Sphinx technical writing  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Sphinx technical writing  documentation" href="../index.html"/>
+        <link rel="up" title="Sphinx features" href="sphinxfeatures.html"/>
+        <link rel="next" title="Tools" href="../tools/toolsindex.html"/>
+        <link rel="prev" title="Using aliases to create links" href="linking.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sphinx technical writing
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Technical writing with Sphinx</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sphinxfeatures.html">Sphinx features</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sphinxfeatures.html#feature-list">Feature list</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="toc.html">Displaying the full table of contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linking.html">Using aliases to create links</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Targeted publishing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tagging-the-internal-content">Tagging the internal content</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-internal-version">Building the internal version</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/toolsindex.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cd/cdindex.html">Continuous deployment</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sphinx technical writing</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sphinxfeatures.html">Sphinx features</a> &raquo;</li>
+        
+      <li>Targeted publishing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sphinx/audience.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="targeted-publishing">
+<h1>Targeted publishing<a class="headerlink" href="#targeted-publishing" title="Permalink to this headline">¶</a></h1>
+<p>Targeted publishing consists in generating a specific version of the documentation for a specific audience from
+a single set of source files, this is commonly referred to as <strong>single sourcing</strong>.</p>
+<p>An obvious example is the difference between internal and public documentation. The internal version of the
+documentation contains all the public documentation and additional internal-only pages.</p>
+<p>Let’s make Sphinx generate 2 versions of the documentation from one repository.</p>
+<div class="section" id="tagging-the-internal-content">
+<h2>Tagging the internal content<a class="headerlink" href="#tagging-the-internal-content" title="Permalink to this headline">¶</a></h2>
+<p>Before we can have Sphinx build the internal or public version of the documentation, you must tag all the internal
+content with the <code class="docutils literal notranslate"><span class="pre">only</span></code> <a class="reference external" href="http://www.sphinx-doc.org/en/stable/markup/misc.html#directive-only">directive</a>.</p>
+<p>This directive takes one parameter that is a tag/keyword of your choice. The content of the directive (the text
+indented under it) is what is considered as “tagged”. In our case, the <code class="docutils literal notranslate"><span class="pre">internal</span></code> tag sounds relatively sane
+to describe the tagged content. Other typical examples are versions (1.2, 1.3…), or user types (admin, dev, end user…).</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Title</span>
+<span class="gh">-----</span>
+
+Some public text here...
+
+<span class="p">..</span> <span class="ow">only</span><span class="p">::</span> internal
+
+   This text in only displayed in the internal documentation.
+
+Some more public text here.
+</pre></div>
+</div>
+<p>If you try to build the output using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, the <em>internal</em> text would not appear, so let’s
+configure Sphinx to build the internal output in which the text must appear.</p>
+</div>
+<div class="section" id="building-the-internal-version">
+<h2>Building the internal version<a class="headerlink" href="#building-the-internal-version" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://www.sphinx-doc.org/en/master/man/sphinx-build.html?highlight=command%20line#cmdoption-sphinx-build-t">Sphinx command line</a> (<code class="docutils literal notranslate"><span class="pre">sphinx</span> <span class="pre">build</span></code>) can take the <code class="docutils literal notranslate"><span class="pre">-t</span></code> argument that allows you to specify which tags
+should be taken into consideration during the build.</p>
+<ol class="arabic">
+<li><p>Open the Makefile created by Sphinx in the root folder of the repository. It should look similar to the
+Makefile of the project used to build this website:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># You can set these variables from the command line.</span>
+<span class="nv">SPHINXOPTS</span>    <span class="o">=</span> --color
+<span class="nv">SPHINXBUILD</span>   <span class="o">=</span> python -msphinx
+<span class="nv">SPHINXPROJ</span>    <span class="o">=</span> sphinxtechnicalwriting
+<span class="nv">SOURCEDIR</span>     <span class="o">=</span> <span class="nb">source</span>
+<span class="nv">BUILDDIR</span>      <span class="o">=</span> build
+
+<span class="c"># Put it first so that &quot;make&quot; without argument is like &quot;make help&quot;.</span>
+<span class="nf">help</span><span class="o">:</span>
+        @<span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -M <span class="nb">help</span> <span class="s2">&quot;</span><span class="k">$(</span>SOURCEDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span>BUILDDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="k">$(</span>SPHINXOPTS<span class="k">)</span> <span class="k">$(</span>O<span class="k">)</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">help</span> <span class="n">Makefile</span>
+
+<span class="c"># Catch-all target: route all unknown targets to Sphinx using the new</span>
+<span class="c"># &quot;make mode&quot; option.  $(O) is meant as a shortcut for $(SPHINXOPTS).</span>
+<span class="nf">%</span><span class="o">:</span> <span class="n">Makefile</span>
+        @<span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -M <span class="nv">$@</span> <span class="s2">&quot;</span><span class="k">$(</span>SOURCEDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span>BUILDDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="k">$(</span>SPHINXOPTS<span class="k">)</span> <span class="k">$(</span>O<span class="k">)</span>
+</pre></div>
+</div>
+<p>This file contains <em>targets</em>, these are specific keywords that you attach to <code class="docutils literal notranslate"><span class="pre">make</span></code> such as <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to
+run a set of instructions.</p>
+<p>There are 2 targets in this file:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">help</span></code>: it displays the help.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%</span></code>: this a special target that runs for any command that is not <code class="docutils literal notranslate"><span class="pre">help</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Add a new target called <code class="docutils literal notranslate"><span class="pre">htmlinternal</span></code>:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">htmlinternal</span><span class="o">:</span>
+  @echo <span class="s2">&quot;Building internal docs&quot;</span>
+  @mkdir -p buildinternal/html
+  @<span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -M html <span class="s2">&quot;</span><span class="k">$(</span>SOURCEDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="s2">&quot;buildinternal/html&quot;</span> <span class="k">$(</span>SPHINXOPTS<span class="k">)</span> <span class="k">$(</span>O<span class="k">)</span> -t internal
+</pre></div>
+</div>
+</li>
+<li><p>To build the internal documentation, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make htmlinternal
+</pre></div>
+</div>
+<p>The output file are in the <code class="docutils literal notranslate"><span class="pre">buildinternal/html</span></code> folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To build the public documentation (or rather <em>non-internal</em> documentation, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This is a great feature but its behaviour is a bit buggy. Make sure to test your output
+when you use it.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tools/toolsindex.html" class="btn btn-neutral float-right" title="Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="linking.html" class="btn btn-neutral" title="Using aliases to create links" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ArtFlag.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

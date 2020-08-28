@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Technical writing with Sphinx &mdash; Sphinx technical writing  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Sphinx technical writing  documentation" href="#"/>
+        <link rel="next" title="Sphinx features" href="sphinx/sphinxfeatures.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Sphinx technical writing
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Technical writing with Sphinx</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/sphinxfeatures.html">Sphinx features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/toolsindex.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cd/cdindex.html">Continuous deployment</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Sphinx technical writing</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Technical writing with Sphinx</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="technical-writing-with-sphinx">
+<h1>Technical writing with Sphinx<a class="headerlink" href="#technical-writing-with-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>This website contains information and tutorials to set up <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> for
+continuous deployment (regular and automated publishing of the docs) with totally free software.</p>
+<p>The fundamental idea behind this approach is to treat documentation like code. Developers and DevOps have been
+refining their workflows to deliver software. It only makes sense to me that technical writers should steal as much as
+possible from their findings.</p>
+<p>The idea of the workflow shown in this website is to solve the following problems.</p>
+<div class="section" id="problem-list">
+<h2>Problem list<a class="headerlink" href="#problem-list" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>You are the only tech writer of your company and you do not have time to maintain the documentation platform and
+to write the docs.</p></li>
+<li><p>You want to enable developers to contribute to the docs.</p></li>
+<li><p>You still want to have full control over the docs to steer it in the right direction.</p></li>
+<li><p>You want to be able to write the docs too, or fix other contributors’ documentation.</p></li>
+<li><p>You do not want to break the bank with licenses.</p></li>
+<li><p>You do not want to be forced to a proprietary format (vendor lock-in).</p></li>
+</ul>
+</div>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>The solution is to use simple tools to build the documentation, test it, and publish it. It should be fast enough to
+allow you to update the docs in a few minutes and most importantly, the publishing should be automatic.</p>
+<p>The solution uses:</p>
+<ul class="simple">
+<li><p>A repository to store the documentation source files: <a class="reference external" href="https://github.com/">GitHub</a></p></li>
+<li><p>A static website generator: <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a></p></li>
+<li><p>A continuous integration tool: <a class="reference external" href="https://github.com/">Travis CI</a></p></li>
+</ul>
+<p>If you are using different tools, like Bitbucket, Jekyll and CircleCI, or a local
+install of Git, Hugo and another deployment platform, the content of this website should still be meaningful.</p>
+<p>Technical information related to technical writing is not easy to find on the Internet so I hope this website can help some
+other technical writers.</p>
+<p>To see why I think Sphinx is one of the best generators (in my context), see <a class="reference internal" href="sphinx/sphinxfeatures.html#features"><span class="std std-ref">Sphinx features</span></a>.</p>
+<p>To see how to set it up for continuous deployment, see <a class="reference internal" href="cd/cdindex.html#deployment"><span class="std std-ref">Continuous deployment</span></a>.</p>
+<p>Finally, if you are really new to “modern” technical writing based on light weight markup languages and
+static website generators, here is a quick recap.</p>
+</div>
+<div class="section" id="modern-technical-writing">
+<h2>Modern technical writing<a class="headerlink" href="#modern-technical-writing" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt><strong>What’s a static website generator?</strong></dt><dd><p>It’s a piece of software, generally free, that turns specific text files into a simple website.
+Generators are generally open source, so you can modify anything, or use other people’s modifications (extensions).
+Most importantly, it’s great because it’s fast and simple. And you know… less is more.</p>
+</dd>
+<dt><strong>Why would you do that, some software is designed to write docs like MadCap Flare, oXygen, etc?</strong></dt><dd><p>This kind of software works but you depend on a heavy architecture that is generally slower, and harder to customize,
+if possible at all.
+They can even use a proprietary format, so migrating to another system becomes really hard.</p>
+<p>Another issue is <strong>licenses</strong>. By design, these applications mean that only the chosen few colleagues can edit the docs,
+typically technical writers.
+If you work in software, the people with the knowledge are the developers since they write the code. Why would you want
+to lock them out of the docs <em>by your choice of tooling</em>? If it is what you want, it should strictly be a workflow decision
+that has nothing to do with anything else.</p>
+</dd>
+<dt><strong>Why Sphinx over other static website generators?</strong></dt><dd><p>You probably did your research and you’re probably thinking that:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Jekyll is cool but it might be popular because it’s been one of the first static website generator around.</p></li>
+<li><p>Markdown is cool but it’s not semantic and lacks a proper standard (CommonMark sounds great but is still lacking support).</p></li>
+<li><p>Using these 2 together works well, but you’ll likely end up with some HTML/MD mix that will be impossible to convert automatically
+(or expensive) the day you want to migrate to the next <em>cool</em> language/technology.</p></li>
+<li><p>Hugo is blazing fast, but its support of reStructuredText is limited.</p></li>
+<li><p>Other generators look really promising but the small community makes you feel that you should not use them for professional purposes.</p></li>
+<li><p>Sphinx is not perfect either but I found that it provides more features than the other famous generators. More about this in the
+<a class="reference internal" href="sphinx/sphinxfeatures.html#features"><span class="std std-ref">features</span></a> section.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<p>For more information, there are plenty of very nice blog posts about this, here are a few links from blogs you should read:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/">Eric Holscher - Don’t use markdown for technical docs</a></p></li>
+<li><p><a class="reference external" href="http://idratherbewriting.com/2015/01/28/10-reasons-for-moving-away-from-dita/">I’d rather be writing - 10 reasons for moving away from DITA</a></p></li>
+<li><p><a class="reference external" href="http://idratherbewriting.com/2015/03/23/new-series-jekyll-versus-dita/">I’d rather be writing - Jekyll vs DITA</a></p></li>
+</ul>
+<p>Once again, this page offers a quick recap, not a comparison between traditional tooling and these lightweight tools.
+These tools might not be applicable in your context.</p>
+</div>
+</div>
+<div class="section" id="table-of-contents">
+<h1>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/sphinxfeatures.html">Sphinx features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx/sphinxfeatures.html#feature-list">Feature list</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools/toolsindex.html">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/toolsindex.html#vs-code">VS Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cd/cdindex.html">Continuous deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cd/cdindex.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cd/cdindex.html#final-setup">Final setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cd/cdindex.html#tutorial">Tutorial</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sphinx/sphinxfeatures.html" class="btn btn-neutral float-right" title="Sphinx features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, ArtFlag.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
