@@ -42,7 +42,7 @@ Let's define it:
 
    This file tells to Travis to apply the following steps:
 
-   #. Set up a system that runs Python 3.7.
+   #. Set up a system that runs Python 3.8.2.
    #. Install pip and install all the Python modules contained in the ``requirements.txt`` or ``Pipfile`` file.
    #. Define 2 `stages`_: *build and test* and *deploy*.
       Stages are run sequentially but run the jobs they contain in parallel. A failed stage cancels the
