@@ -65,3 +65,4 @@ Tutorial
    config-github-travis.rst
    config-tests.rst
    config-travis.rst
+   config-docker.rst

@@ -19,5 +19,9 @@
     "**/*.po": true,
     "**/*.pot": true
   },
-  "vale.core.useCLI": true
+  "vale.core.useCLI": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.venvPath": ".venv"
 }
