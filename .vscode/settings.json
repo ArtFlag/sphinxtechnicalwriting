@@ -1,3 +1,23 @@
 {
-  "python.pythonPath": ".venv/bin/python"
+  "python.pythonPath": ".venv/bin/python",
+  "window.title": "${activeEditorLong}${separator}${rootName}",
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "restructuredtext.preview.docutil.disabled": true,
+  "search.exclude": {
+    "**/*.mo": true,
+    "**/*.po": true,
+    "**/*.pot": true
+  },
+  "vale.core.useCLI": true
 }
