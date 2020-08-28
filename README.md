@@ -13,13 +13,21 @@ set up self-publishing documentation and some tips to increase your productivity
 
 1. If you haven't done it already, set up your environment:
 
-   ```
+   ```bash
    pipenv install
    ```
 
 1. Build:
-   ```
+
+   ```bash
    pipenv run make html
    ```
 
 1. Celebrate.
+
+Or use Docker:
+
+```bash
+make image
+make html-docker
+```

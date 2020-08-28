@@ -1,6 +1,10 @@
 config
 dev
+Dockerfile
 github
 Holscher
+makefile
 Makefile
+Pipfile
+pipenv
 repo
